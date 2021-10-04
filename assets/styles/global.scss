@@ -1,1 +1,105 @@
+@import "custom";
 @import "~bootstrap/scss/bootstrap";
+
+//GENERALS
+img{
+  width:100%;
+}
+
+.btn{
+  min-height:50px;
+}
+
+*{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
+
+h1, h2{
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+
+//CONTAINER
+.container-xxl{
+  position: relative;
+  padding: 0;
+  &.box-shadow{
+    -webkit-box-shadow: 0 0 20px 0 rgba(51,48,111,0.3);
+    box-shadow: 0 0 20px 0 rgba(51,48,111,0.3);
+  }
+  &.is-bg{
+    background-repeat: no-repeat;
+    background-position: left 145% bottom 15%;
+  }
+  &.footer{
+    background-color:$primary;
+    >figure{
+      max-width:90px;
+    }
+  }
+}
+
+//NAVBAR
+.navbar {
+  min-height: 100px;
+  position: absolute;
+  width: 100%;
+  max-width: 1300px;
+  z-index: 1;
+  padding: 20px 40px;
+
+  .navbar-brand{
+    img{
+      min-width: 79.87px;
+      min-height: 107px;
+    }
+  }
+}
+
+//HEADER
+.header{
+  min-height: 614px;
+  background-position: bottom;
+}
+
+//CAROUSSEL
+.carousel {
+  .carousel-inner {
+    min-height: 450px;
+
+    .carousel-item > div {
+      max-height: 320px;
+      max-width: 930px;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+      background-color: white;
+
+      figure {
+        min-width: 250px;
+
+        img {
+          transform: rotate(347deg);
+        }
+      }
+    }
+  }
+
+  .carousel-control-prev, .carousel-control-next {
+    opacity: 1;
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: $primary;
+      border-radius: 20px;
+      min-width: 40px;
+      min-height: 40px;
+      background-size: 50%;
+    }
+  }
+}
+
+//CTA CONTAINER
+.cta-container{
+  background-color: $light-purple;
+}

@@ -1,19 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+            {{ encore_entry_link_tags('app') }}
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
         {% endblock %}
 
         {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
+        {% block nav %}
+            <div class="container-xxl">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="{{ asset('build/images/logo-menu.png') }}" alt="Logo de la Réserve de la Chapelle">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+                                <li class="nav-item me-3">
+                                    <a class="nav-link text-white" href="#">Se connecter</a>
+                                </li>
+                                <li class="nav-item">
+                                    <button type="button" class="btn btn-info">
+                                        <a class="nav-link text-white" href="#">S'inscrire</a>
+                                    </button>
+                                </li>
+
+                                {# <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>  #}
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        {% endblock %}
         {% block body %}{% endblock %}
+        {% block footer %}
+        <div class="container-xxl footer d-flex flex-column align-items-center">
+            <figure class="my-5">
+                <img src="{{ asset('build/images/logo-footer.png') }}"  alt="Logo La Réserve de la Chapelle">
+            </figure>
+            <div class="social-icons my-3 w-50 d-flex justify-content-center">
+                <figure class="m-3">
+                    <img src="{{ asset('build/images/social-icon-fb.svg') }}"  alt="Logo Facebook">
+                </figure>
+                <figure class="m-3">
+                    <img src="{{ asset('build/images/social-icon-twt.svg') }}"  alt="Logo Twitter">
+                </figure>
+                <figure class="m-3">
+                    <img src="{{ asset('build/images/social-icon-in.svg') }}"  alt="Logo Instagram">
+                </figure>
+                <figure class="m-3">
+                    <img src="{{ asset('build/images/social-icon-yt.svg') }}"  alt="Logo Youtube">
+                </figure>
+            </div>
+        </div>
+        {% endblock %}
     </body>
 </html>
