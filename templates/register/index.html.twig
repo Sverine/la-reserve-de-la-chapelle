@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegisterController!{% endblock %}
+
+{% block body %}
+
+    <div class="container-xxl box-shadow">
+        {{ include ('_navigation.html.twig') }}
+
+        <section class="m-5 text-center">
+            <h1 class="mx-auto text-center my-5 mb-0">S'inscrire</h1>
+            <p class="mt-0">Déjà inscrit ? <a href="">Se connecter</a></p>
+
+        </section>
+
+        <section class="register-section mx-auto my-5 px-5">
+            {% if messages is defined %}
+                <div class="d-flex flex-column flex-sm-row justify-content-center mb-5">
+                    <figure class="me-3">
+                        <img src="{{ asset('build/images/icon-confirm.svg') }}" alt="Icon de confirmation" width="24" height="24">
+                    </figure>
+                    <div class="d-flex flex-column align-items-start">
+                        {% for message in messages %}
+                            <p class="my-0">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            {{ form_start(form) }}
+            <div class="d-flex flex-column flex-sm-row justify-content-between">
+                <div class="w-100 w-sm-50 me-sm-2">{{ form_row(form.firstname) }}</div>
+                <div class="w-100 w-sm-50 ms-sm-2">{{ form_row(form.lastname) }}</div>
+            </div>
+            {{ form_end(form) }}
+        </section>
+
+        {{ include ('_footer.html.twig') }}
+    </div>
+{% endblock %}
