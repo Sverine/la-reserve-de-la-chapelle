@@ -15,9 +15,14 @@ img{
   font-weight: 300;
 }
 
-h1, h2, label{
+label, h1, h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
+  &.type-name {
+    position: absolute;
+    font-size:140px;
+    margin-top:-110px;
+  }
 }
 
 body.is-bg{
@@ -31,7 +36,7 @@ body.is-bg{
   position: relative;
   padding: 0;
   background-color:white;
-  height: 100vh;
+  min-height: 100vh;
   &.box-shadow{
     -webkit-box-shadow: 0 0 20px 0 rgba(51,48,111,0.3);
     box-shadow: 0 0 20px 0 rgba(51,48,111,0.3);
@@ -44,6 +49,14 @@ body.is-bg{
   border: 1px solid #F9F9F9;
   color:$gray-900;
   font-weight: 300;
+  &.search-catalog{
+    box-shadow: none;
+    border:1px solid transparent;
+  }
+}
+
+.form-select.type-filter:focus{
+  box-shadow: none;
 }
 
 .footer{
@@ -72,12 +85,26 @@ body.is-bg{
       max-height: 107px;
     }
   }
+  >div >div ul li {
+    >a::after{
+        content:none;
+    }
+    ul{
+      left: -30px !important;
+      min-width: 200px;
+    }
+  }
 }
 
 //HEADER
 .header{
   min-height: 614px;
   background-position: bottom;
+  background-size: cover;
+  &.is-catalog{
+    min-height: 450px;
+    background-position: top;
+  }
 }
 
 //CAROUSSEL
@@ -123,6 +150,24 @@ body.is-bg{
 //REGISTER FORM SECTION
 .register-section{
   max-width:800px;
+}
+
+.types-container >div{
+    >div{
+      position: relative;
+      z-index: 1;
+      >div{
+      position: relative;
+      background: linear-gradient(0deg, rgba(0,0,0,0.39959733893557425) 0%, rgba(0,0,0,0) 100%);
+      width:200px;
+      height:280px;
+        figure{
+          position: absolute;
+          top:20%;
+          right: -2%;
+        }
+    }
+  }
 }
 
 
