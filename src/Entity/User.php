@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -60,9 +62,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $is_confirmed;
 
+    /**
+     * @ORM\OneToMany(targetEntity=BookLoan::class, mappedBy="user")
+     */
+    private $bookLoans;
+
     //At creation, all new User are not confirmed yet. Only the employe can set is_confirmed into true
     public function __construct(){
         $this->is_confirmed = false;
+        $this->bookLoans = new ArrayCollection();
     }
 
 
@@ -211,6 +219,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsConfirmed(bool $is_confirmed): self
     {
         $this->is_confirmed = $is_confirmed;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|BookLoan[]
+     */
+    public function getBookLoans(): Collection
+    {
+        return $this->bookLoans;
+    }
+
+    public function addBookLoan(BookLoan $bookLoan): self
+    {
+        if (!$this->bookLoans->contains($bookLoan)) {
+            $this->bookLoans[] = $bookLoan;
+            $bookLoan->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookLoan(BookLoan $bookLoan): self
+    {
+        if ($this->bookLoans->removeElement($bookLoan)) {
+            // set the owning side to null (unless already changed)
+            if ($bookLoan->getUser() === $this) {
+                $bookLoan->setUser(null);
+            }
+        }
 
         return $this;
     }
