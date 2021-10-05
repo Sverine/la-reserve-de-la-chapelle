@@ -32,12 +32,13 @@ class RegisterController extends AbstractController
             $user = $form->getData();
 
             $password = $hasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($password);
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
             $messages = ['Votre inscription a bien été enregistrée.',
-                        'Un employé de la Réserve va étudier votre demande'];
+                        'Un employé de la Réserve va étudier votre demande.'];
 
             return $this->render('register/index.html.twig',[
                 'messages'=>$messages,
