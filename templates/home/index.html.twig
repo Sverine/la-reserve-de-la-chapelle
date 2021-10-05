@@ -3,12 +3,13 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <div class="container-xxl box-shadow is-bg" style="background-image:url('{{ asset('build/images/round-bg.png') }}')">
+    <div class="container-xxl box-shadow is-bg">
+        {{ include ('_navigation.html.twig') }}
 
         <div class="header d-flex flex-column justify-content-center align-items-center" style="background-image:url('{{ asset('build/images/header-bg.png') }}')">
             <h1 class="text-center text-light">Réservez vos romans<br> en un clic</h1>
             <button type="button" class="btn btn-info px-5 mt-5">
-                <a class="text-white text-decoration-none text-uppercase fw-normal" href="">Je m'inscris</a>
+                <a class="text-white text-decoration-none text-uppercase fw-normal" href="{{ path('register') }}">Je m'inscris</a>
             </button>
         </div>
 
@@ -98,11 +99,11 @@
             <div class="cta-container d-flex justify-content-center align-items-center p-5 m5">
                 <h2 class="me-5">Lorem ipsum <br>dolor sit amet ?</h2>
                 <button type="button" class="btn btn-info px-5 ms-5">
-                    <a class="text-white text-decoration-none text-uppercase fw-normal" href="">Je m'inscris</a>
+                    <a class="text-white text-decoration-none text-uppercase fw-normal" href="{{ path('register') }}">Je m'inscris</a>
                 </button>
             </div>
         </section>
 
-
+        {{ include ('_footer.html.twig') }}
     </div>
 {% endblock %}
