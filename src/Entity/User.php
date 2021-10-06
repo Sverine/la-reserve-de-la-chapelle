@@ -67,6 +67,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $bookLoans;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_inscription;
+
     //At creation, all new User are not confirmed yet. Only the employe can set is_confirmed into true
     public function __construct(){
         $this->is_confirmed = false;
@@ -249,6 +254,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $bookLoan->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateInscription(): ?\DateTimeInterface
+    {
+        return $this->date_inscription;
+    }
+
+    public function setDateInscription(\DateTimeInterface $date_inscription): self
+    {
+        $this->date_inscription = $date_inscription;
 
         return $this;
     }
