@@ -170,12 +170,43 @@ body.is-bg{
   }
 }
 
+//DASHBOARD
+.container-fluid.dashboard {
+  .vertical-nav {
+    min-height: 100vh;
+    >figure:last-child{
+      position:absolute;
+      top: 18.5%;
+      left: 16.6%;
+    }
+  }
+}
+
+//TABLE
+table {
+  >thead >tr th{
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+
 
 //MEDIA QUERIES
 @media screen and (max-width:576px){
   .w-sm-50{
     width:50%;
   }
+}
 
+@media screen and (min-width:540px){
+  .vertical-nav{
+    display:flex !important;
+  }
+}
+
+@media screen and (min-width: 1399px){
+  .container-fluid.dashboard .vertical-nav >figure:last-child{
+    left: 8.2%;
+  }
 }
 
