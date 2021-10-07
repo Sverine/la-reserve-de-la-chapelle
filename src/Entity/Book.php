@@ -6,9 +6,13 @@ use App\Repository\BookRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
+ * @Vich\Uploadable
  */
 class Book
 {
@@ -25,12 +29,19 @@ class Book
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
      */
     private $img_cover;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @Vich\UploadableField(mapping="book_covers", fileNameProperty="img_cover")
+     * @var File
+     */
+    private $folderImage;
+
+    /**
+     * @ORM\Column(type="datetime",  options={"default": "CURRENT_TIMESTAMP"})
      */
     private $updated_at;
 
@@ -55,7 +66,7 @@ class Book
     private $is_reserved;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $is_favorite;
 
@@ -73,6 +84,7 @@ class Book
     {
         $this->type = new ArrayCollection();
         $this->bookLoans = new ArrayCollection();
+        $this->is_reserved = false;
     }
 
     public function getId(): ?int
@@ -97,11 +109,33 @@ class Book
         return $this->img_cover;
     }
 
-    public function setImgCover(string $img_cover): self
+    public function setImgCover( ?string $img_cover): self
     {
         $this->img_cover = $img_cover;
 
         return $this;
+    }
+
+
+    /**
+     * @return null|File
+     */
+    public function getFolderImage(): ?File
+    {
+        return $this->folderImage;
+    }
+
+    /**
+     * @param File|null $folderImage
+     */
+
+    public function setFolderImage(?File $folderImage = null): void
+    {
+        $this->folderImage = $folderImage;
+
+        if($folderImage){
+            $this->updated_at = new \DateTime('now');
+        }
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
