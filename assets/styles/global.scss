@@ -15,7 +15,7 @@ img{
   font-weight: 300;
 }
 
-label, h1, h2 {
+label,legend, h1, h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   &.type-name {
@@ -147,11 +147,43 @@ body.is-bg{
   background-color: $light-purple;
 }
 
-//REGISTER FORM SECTION
+//FORM
 .register-section{
   max-width:800px;
 }
 
+form[name="book"] div{
+  #book_type{
+    display:flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    >div{
+      margin-right: 20px;
+      label{
+        font-family: 'Poppins', sans-serif;
+        font-weight: lighter;
+      }
+    }
+  }
+  .is-favorite .form-check {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    padding-left: 0;
+
+    input {
+      margin: 10px 0;
+      min-height: 30px;
+      min-width: 60px;
+      &:checked{
+        background-size: 50%;
+      }
+    }
+  }
+}
+
+
+//TYPES CONTAINER
 .types-container >div{
     >div{
       position: relative;
@@ -189,6 +221,33 @@ table {
   }
 }
 
+//BOOK SHOW
+section{
+  .book-cover-show{
+    width:400px;
+    height:561px;
+    position: relative;
+    border-radius: 10px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.39959733893557425) 0%, rgba(0,0,0,0) 100%);
+    >img{
+      border-radius: 10px;
+    }
+    .book-cover-info{
+      position: absolute;
+      bottom: 2%;
+      right: 12%;
+    }
+      >svg{
+        position: absolute;
+        bottom: 3%;
+        left: 6%;
+      }
+  }
+  .book-description-show >div:last-child{
+    max-height:350px;
+  }
+}
+
 
 
 //MEDIA QUERIES
@@ -206,7 +265,7 @@ table {
 
 @media screen and (min-width: 1399px){
   .container-fluid.dashboard .vertical-nav >figure:last-child{
-    left: 8.2%;
+    left: 8.2% !important;
   }
 }
 
