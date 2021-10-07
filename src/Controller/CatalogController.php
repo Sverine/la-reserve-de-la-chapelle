@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use App\Entity\Type;
 use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;

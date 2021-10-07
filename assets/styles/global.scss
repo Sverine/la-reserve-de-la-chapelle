@@ -184,22 +184,9 @@ form[name="book"] div{
 
 
 //TYPES CONTAINER
-.types-container >div{
-    >div{
+.types-container >div >div{
       position: relative;
       z-index: 1;
-      >div{
-      position: relative;
-      background: linear-gradient(0deg, rgba(0,0,0,0.39959733893557425) 0%, rgba(0,0,0,0) 100%);
-      width:200px;
-      height:280px;
-        figure{
-          position: absolute;
-          top:20%;
-          right: -2%;
-        }
-    }
-  }
 }
 
 //DASHBOARD
@@ -229,6 +216,18 @@ section{
     position: relative;
     border-radius: 10px;
     background: linear-gradient(0deg, rgba(0,0,0,0.39959733893557425) 0%, rgba(0,0,0,0) 100%);
+    &.is-catalog{
+      width:200px;
+      height:280px;
+      >figure:first-of-type img{
+        border-radius: 10px;
+      }
+      >.is-reserved{
+        position: absolute;
+        top:5%;
+        right: -3%;
+      }
+    }
     >img{
       border-radius: 10px;
     }
@@ -237,10 +236,13 @@ section{
       bottom: 2%;
       right: 12%;
     }
-      >svg{
+      svg{
         position: absolute;
         bottom: 3%;
         left: 6%;
+        &.is-catalog{
+          bottom: 85%;
+        }
       }
   }
   .book-description-show >div:last-child{
