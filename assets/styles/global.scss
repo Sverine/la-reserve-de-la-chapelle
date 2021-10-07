@@ -250,6 +250,18 @@ section{
   }
 }
 
+//MODAL
+.modal{
+  .modal-header{
+    position:relative;
+    button{
+      position: absolute;
+      top: 15%;
+      right: 4%;
+    }
+  }
+}
+
 
 
 //MEDIA QUERIES

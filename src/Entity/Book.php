@@ -71,7 +71,7 @@ class Book
     private $is_favorite;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Type::class, inversedBy="books")
+     * @ORM\ManyToMany(targetEntity=Type::class, inversedBy="books", cascade={"persist"})
      */
     private $type;
 
