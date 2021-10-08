@@ -25,12 +25,43 @@
                         <div class="col-12 col-md-5 ms-sm-2">{{ form_row(form.folderImage) }}</div>
                     </div>
                     <div class="row d-flex flex-column flex-sm-row justify-content-between">
-                        <div class="col-12 col-md-5  me-sm-2 book-type">{{ form_row(form.type) }}</div>
+                        <div class="col-12 col-md-5  me-sm-2 book-type">
+                            {{ form_row(form.type) }}
+                            <button class="btn border border-2 border-info mb-4">
+                                <a class="text-decoration-none text-info fw-light" data-bs-toggle="modal" data-bs-target="#modal1">
+                                    + Ajouter une catégorie
+                                </a>
+                            </button>
+                        </div>
                         <div class="col-12 col-md-5 ms-sm-2  ps-2 form-switch is-favorite">{{ form_row(form.is_favorite) }}</div>
                     </div>
                     {{ form_end(form) }}
                 </div>
             </section>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content px-5">
+                        <div class="modal-header border-0 d-flex flex-column align-items-center mt-3">
+                            <div class="d-flex flex-column align-items-center">
+                                <figure>
+                                    <img src="{{ asset('build/images/icon-book_type.svg') }}" alt="Icon de catégorie de livre" width="40" height="40">
+                                </figure>
+                                <h2 class="modal-title" id="exampleModalLabel">Nouvelle catégorie</h2>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                          <div class="modal-body px-5">
+                            {{ form_start(formType) }}
+                            {{ form_row(formType.name) }}
+                            <button class="w-100 mb-5 mt-3 btn btn-primary connect-button" type="submit">Enregistrer</button>
+                            {{ form_end(formType) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
            {#  {{ include('book/_form.html.twig', {'button_label': 'Update'}) }}

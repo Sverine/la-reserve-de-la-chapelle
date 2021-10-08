@@ -20,7 +20,7 @@ class TypeRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Type[] Returns an array of Type objects
+    //  * @return TypeType[] Returns an array of TypeType objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class TypeRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Type
+    public function findOneBySomeField($value): ?TypeType
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

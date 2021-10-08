@@ -34,7 +34,7 @@
                                     <td class="border-0">{{ book.title }}</td>
                                     <td class="border-0">{{ book.author }}</td>
                                     <td class="border-0">{{ book.publishedAt ? book.publishedAt|date('d/m/Y') : '' }}</td>
-                                    <td class="border-0">{% if book.isReserved == false %}Disponible{% endif %}</td>
+                                    <td class="border-0">{% if book.isReserved %}Réservé{% else %}Disponible{% endif %}</td>
                                     <td class="border-0 d-flex">
                                         {# APERCU #}
                                         <a href="{{ path('book_show', {'id': book.id}) }}" class="me-2">

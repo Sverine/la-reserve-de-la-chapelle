@@ -3,8 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Entity\Type;
 use App\Form\BookType;
+use App\Form\TypeType;
 use App\Repository\BookRepository;
+use App\Repository\TypeRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,12 +37,27 @@ class BookController extends AbstractController
     {
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
+
+        $type = new Type();
+        $formType = $this->createForm(TypeType::class,$type);
+
         $form->handleRequest($request);
+        $formType->handleRequest($request);
+
+        if($formType->isSubmitted() && $formType->isValid()){
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($type);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('book_new');
+
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($book);
             $entityManager->flush();
+
 
             return $this->redirectToRoute('book_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -45,6 +65,7 @@ class BookController extends AbstractController
         return $this->renderForm('book/new.html.twig', [
             'book' => $book,
             'form' => $form,
+            'formType'=>$formType
         ]);
     }
 
@@ -66,6 +87,19 @@ class BookController extends AbstractController
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
+        $type = new Type();
+        $formType = $this->createForm(TypeType::class, $type);
+        $formType->handleRequest($request);
+
+        if ($formType->isSubmitted() && $formType->isValid()) {
+            $this->getDoctrine()->getManager()->persist($type);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('book_edit',[
+                'id'=>$book->getId(),
+            ] );
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -75,6 +109,7 @@ class BookController extends AbstractController
         return $this->renderForm('book/edit.html.twig', [
             'book' => $book,
             'form' => $form,
+            'formType'=>$formType
         ]);
     }
 
@@ -91,4 +126,6 @@ class BookController extends AbstractController
 
         return $this->redirectToRoute('book_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }

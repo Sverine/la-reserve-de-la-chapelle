@@ -71,7 +71,7 @@ class Book
     private $is_favorite;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Type::class, inversedBy="books")
+     * @ORM\ManyToMany(targetEntity=Type::class, inversedBy="books", cascade={"persist"})
      */
     private $type;
 
@@ -263,4 +263,10 @@ class Book
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
 }

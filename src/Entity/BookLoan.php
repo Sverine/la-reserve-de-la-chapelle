@@ -44,6 +44,12 @@ class BookLoan
      */
     private $user;
 
+    public function __construct(){
+         $this->date_loan = new \DateTime('now');
+         $this->status = 'En attente';
+         return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
