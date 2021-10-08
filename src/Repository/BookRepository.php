@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Book;
+use App\Entity\Type;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,7 +20,16 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
-    // /**
+    public function findByIsFavorite()
+    {
+        return $this->createQueryBuilder('b')
+            ->where('b.is_favorite = true')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+     /**
     //  * @return Book[] Returns an array of Book objects
     //  */
     /*

@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Entity\BookLoan;
 use App\Entity\Type;
+use App\Entity\User;
 use App\Form\BookType;
 use App\Helper\YouMayAlsoLikeManager;
 use App\Repository\BookRepository;
@@ -14,6 +16,7 @@ use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -42,6 +45,7 @@ class CatalogController extends AbstractController
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -68,13 +72,21 @@ class CatalogController extends AbstractController
      * @param BookRepository $repository
      * @return Response
      */
-    public function reserve(Book $book, EntityManagerInterface $entityManager, BookRepository $repository): Response
+    public function reserve(Book $book, EntityManagerInterface $entityManager, BookRepository $repository, Security $security): Response
     {
         if(!$book->getIsReserved()){
             $book->setIsReserved(true);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($book);
+            $entityManager->flush();
+
+
+            $user = $security->getUser();
+            $book_loan =  new BookLoan();
+            $book_loan->setBook($book)
+                ->setUser($user);
+            $entityManager->persist($book_loan);
             $entityManager->flush();
 
             return $this->redirectToRoute('catalog_show',[
