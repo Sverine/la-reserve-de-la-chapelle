@@ -25,6 +25,10 @@ label,legend, h1, h2 {
   }
 }
 
+.rounded-4{
+  border-radius: 10px !important;
+}
+
 body.is-bg{
     background-repeat: no-repeat;
     background-position: left 95% bottom 25%;
@@ -219,18 +223,15 @@ section{
     &.is-catalog{
       width:200px;
       height:280px;
-      >figure:first-of-type img{
-        border-radius: 10px;
-      }
+    }
       >.is-reserved{
         position: absolute;
         top:5%;
-        right: -3%;
+        right: -2.5%;
+        &.is-book{
+          right: -1.6%;
+        }
       }
-    }
-    >img{
-      border-radius: 10px;
-    }
     .book-cover-info{
       position: absolute;
       bottom: 2%;
@@ -245,10 +246,11 @@ section{
         }
       }
   }
-  .book-description-show >div:last-child{
-    max-height:350px;
+  .book-description-show .overflow-scroll{
+    max-height:320px;
   }
 }
+
 
 //MODAL
 .modal{
@@ -258,6 +260,10 @@ section{
       position: absolute;
       top: 15%;
       right: 4%;
+      &.is-book{
+        top: 5%;
+        right: -2%;
+      }
     }
   }
 }

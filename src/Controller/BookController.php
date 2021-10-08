@@ -8,6 +8,7 @@ use App\Form\BookType;
 use App\Form\TypeType;
 use App\Repository\BookRepository;
 use App\Repository\TypeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -125,5 +126,6 @@ class BookController extends AbstractController
 
         return $this->redirectToRoute('book_index', [], Response::HTTP_SEE_OTHER);
     }
+
 
 }

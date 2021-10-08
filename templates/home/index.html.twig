@@ -50,23 +50,38 @@
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>#}
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="d-flex mx-auto  rounded-3 mt-5 px-3">
+
+                    {#  {% for book in favoriteBooks %}
+                        <div class="carousel-item active">
+                            <div class="d-flex mx-auto  rounded-3 mt-5 px-3">
+                                <figure class="me-5">
+                                    <img src="{{ asset('build/images/test.png') }}"  class="w-100" alt="...">
+                                </figure>
+                                <div class="infos d-flex flex-column align-items-start justify-content-center">
+                                    <h3>{{ book.title | capitalize}}</h3>
+                                    <h6>{{ book.author }}</h6>
+                                    <p>{{ book.description |slice(0, 400) | nl2br }} ...</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}#}
+
+                    {% for book in favoriteBooks %}
+                    <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}" data-bs-interval="4000">
+                        <div class="d-flex mx-auto rounded-3 mt-5 px-3">
                             <figure class="me-5">
-                                <img src="{{ asset('build/images/test.png') }}"  class="w-100" alt="...">
+                                <img src="{{ vich_uploader_asset(book,'folderImage') }}" alt="Photo de couverture du livre" class="rounded-3">
                             </figure>
                             <div class="infos d-flex flex-column align-items-start justify-content-center">
-                                <h3>Hagrid et les septs nains</h3>
-                                <h6>Palmer Dufaur</h6>
-                                <p>
-                                    Paenitet me quod tu me rogas? Oh, sic, qui stultus plastic continentis rogavi te ut emas. Vides non manducare acidum hydrofluoric per plastic.
-                                    Erit autem dissolvere metalli petram,
-                                    vitrum, tellus. Ita quod illic '. Quam de aliquo cum aliqua interdum, maybe? Aliquid viride, huh? Quam vos sunt etiam vivere?
-                                </p>
+                                <h3>{{ book.title | capitalize}}</h3>
+                                <h6>{{ book.author }}</h6>
+                                <p>{{ book.description |slice(0, 400) | nl2br }} ...</p>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
+                    {% endfor %}
+
+                    {#  <div class="carousel-item">
                         <div class="d-flex mx-auto  rounded-3 mt-5 px-3">
                             <figure class="me-5">
                                 <img src="{{ asset('build/images/test2.png') }}"  class="w-100" alt="..." style="transform: rotate(347deg);">
@@ -81,7 +96,8 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div>#}
+
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
