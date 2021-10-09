@@ -1,4 +1,5 @@
 @import "custom";
+@import "animations";
 @import "~bootstrap/scss/bootstrap";
 
 //GENERALS
@@ -206,6 +207,13 @@ form[name="book"] div{
 }
 
 //TABLE
+.table-responsive{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  &::-webkit-scrollbar{
+    display: none;
+  }
+}
 table {
   >thead >tr th{
     font-family: 'Playfair Display', serif;
@@ -267,6 +275,9 @@ section{
     }
   }
 }
+
+
+
 
 
 

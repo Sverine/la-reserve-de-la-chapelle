@@ -15,7 +15,7 @@ class HomeController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager): Response
     {
-        $favoriteBooks = $entityManager->getRepository(Book::class)->findByIsFavorite();
+        $favoriteBooks = $entityManager->getRepository(Book::class)->findBy(['is_favorite'=>true]);
         return $this->render('home/index.html.twig',[
             'favoriteBooks'=>$favoriteBooks
         ]);

@@ -14,7 +14,7 @@ class DashboardController extends AbstractController
     /**
      * @Route("/dashboard", name="dashboard")
      */
-    public function index(UserRepository $repository, EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
         //$users = $entityManager->getRepository(User::class)->findAll();
         $users = $entityManager->getRepository(User::class)->findBy(['is_confirmed'=>false]);
@@ -22,4 +22,26 @@ class DashboardController extends AbstractController
             'users'=>$users
             ]);
     }
+
+    /**
+     * @Route("/dashboard/ulisateur/{id}/confirmer", name="user_approve",  methods={"POST"})
+     * @param User $user
+     * @param EntityManagerInterface $entityManager
+     * @param UserRepository $userRepository
+     * @return Response
+     */
+    public function approveUser(User $user, EntityManagerInterface $entityManager) : Response
+    {
+        $userUpdate = $user->setRoles(["ROLE_SUBSCRIBER"])
+            ->setIsConfirmed(true)
+        ;
+
+        $entityManager->persist($userUpdate);
+        $entityManager->flush();
+
+        return $this->json([
+            'userId'=>$user->getId()
+        ],200);
+    }
+
 }
