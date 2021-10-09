@@ -194,7 +194,7 @@ form[name="book"] div{
       z-index: 1;
 }
 
-//DASHBOARD
+//DASHBOARD NAVIGATION
 .container-fluid.dashboard {
   .vertical-nav {
     min-height: 100vh;
@@ -218,10 +218,24 @@ table {
   >thead >tr th{
     font-family: 'Playfair Display', serif;
   }
+  >tbody tr.is-late{
+    background-color:rgba(255,118,118, 0.20);
+  }
 }
 
-//BOOK SHOW
+//CONTAINER WITH COVER BOOK
 section{
+  //BOOK LOAN EDIT CONTAINER
+  &.is-loan{
+    max-height:550px;
+    margin-top:100px;
+    >div >.book-cover-show{
+      width:450px;
+      height:630px;
+      top: -13%;
+    }
+  }
+  //BOOK COVER
   .book-cover-show{
     width:400px;
     height:561px;
@@ -254,6 +268,7 @@ section{
         }
       }
   }
+  //BOOK SHOW DESCRIPTION
   .book-description-show .overflow-scroll{
     max-height:320px;
   }

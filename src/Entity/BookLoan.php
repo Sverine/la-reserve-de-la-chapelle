@@ -18,7 +18,7 @@ class BookLoan
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date_loan;
 
@@ -44,11 +44,22 @@ class BookLoan
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_reserved;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_late;
+
     public function __construct(){
-         $this->date_loan = new \DateTime('now');
-         $this->status = 'En attente';
+         $this->date_reserved = new \DateTime('now');
+         $this->status = 'Réservé';
          return $this;
     }
+
 
     public function getId(): ?int
     {
@@ -111,6 +122,30 @@ class BookLoan
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getDateReserved(): ?\DateTimeInterface
+    {
+        return $this->date_reserved;
+    }
+
+    public function setDateReserved(\DateTimeInterface $date_reserved): self
+    {
+        $this->date_reserved = $date_reserved;
+
+        return $this;
+    }
+
+    public function getIsLate(): ?bool
+    {
+        return $this->is_late;
+    }
+
+    public function setIsLate(bool $is_late): self
+    {
+        $this->is_late = $is_late;
 
         return $this;
     }

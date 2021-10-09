@@ -24,7 +24,7 @@
         <div class="loans d-flex align-items-start">
             <svg  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" class="me-3"
                  viewBox="0 0 14.7 18.3" style="enable-background:new 0 0 14.7 18.3;" xml:space="preserve">
-                <path class="st0" fill="#8887B9" d="M8.3,11H4.6c-0.2,0-0.5,0.1-0.6,0.3c-0.2,0.2-0.3,0.4-0.3,0.6s0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3h3.7
+                <path class="st0" fill="{% if route starts with 'loan' %}#ffffff{% else %}#8887B9{% endif %}" d="M8.3,11H4.6c-0.2,0-0.5,0.1-0.6,0.3c-0.2,0.2-0.3,0.4-0.3,0.6s0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3h3.7
                 c0.2,0,0.5-0.1,0.6-0.3s0.3-0.4,0.3-0.6s-0.1-0.5-0.3-0.6S8.5,11,8.3,11z M11.9,1.8h-1.1c-0.2-0.5-0.5-1-1-1.3S8.8,0,8.3,0H6.4
                 C5.8,0,5.3,0.2,4.8,0.5C4.4,0.8,4,1.3,3.8,1.8H2.7C2,1.8,1.3,2.1,0.8,2.6C0.3,3.2,0,3.9,0,4.6v11c0,0.7,0.3,1.4,0.8,1.9
                 C1.3,18,2,18.3,2.7,18.3h9.2c0.7,0,1.4-0.3,1.9-0.8s0.8-1.2,0.8-1.9v-11c0-0.7-0.3-1.4-0.8-1.9C13.3,2.1,12.6,1.8,11.9,1.8z
@@ -36,7 +36,7 @@
                 C10.6,7.4,10.3,7.3,10.1,7.3z"/>
             </svg>
 
-            <a class="text-info fw-normal d-none d-md-block text-decoration-none">Emprunts</a>
+            <a class="{% if route starts with 'loan' %}text-white{% else %}text-info{% endif %} fw-normal d-none d-md-block text-decoration-none" href="{{ path('loan_index') }}">Emprunts</a>
         </div>
 
         <div class="books d-flex align-items-start">
@@ -68,12 +68,11 @@
         </div>
 
     </div>
-    <figure style="
+    <figure style="left: 16.6%;
         {% if route == 'dashboard' %}top: 18.5%;
         {% elseif route starts with 'book' %}top: 60.5%;
-
-        {% endif %}
-        left: 16.6%;">
+        {% elseif route starts with 'loan' %}top: 40.1%;
+        {% endif %}">
         <svg  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="104"
               viewBox="0 0 15 78" style="enable-background:new 0 0 15 78;" xml:space="preserve">
         <path fill="#33306F" d="M15,39C15,20.1,3,15.4,0,0v78C3,62.6,15,57.9,15,39z"/>
