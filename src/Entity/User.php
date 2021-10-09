@@ -75,7 +75,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     //At creation, all new User are not confirmed yet. Only the employe can set is_confirmed into true
     public function __construct(){
         $this->is_confirmed = false;
+        $this->date_inscription = new \DateTime('now');
         $this->bookLoans = new ArrayCollection();
+    }
+
+    public function __toString(){
+        return $this->getFirstname();
     }
 
 

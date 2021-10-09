@@ -32,14 +32,14 @@
                             </thead>
                             <tbody>
                             {% for user in users %}
-                                <tr>
+                                <tr id="tr-user-{{ user.id }}" class="animation">
                                     <td class="border-0">{{ user.lastname }}</td>
                                     <td class="border-0">{{ user.firstname }}</td>
                                     <td class="border-0">{{ user.dateInscription ? user.dateInscription|date('d/m/Y') : '' }}</td>
                                     <td class="border-0">{% if user.isConfirmed == false %}En attente{% endif %}</td>
                                     <td class="border-0">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="defaultCheck1" aria-label="default">
+                                            <input class="form-check-input js-checked" type="checkbox" id="defaultCheck1" aria-label="default" data-url="{{ path('user_approve',{'id':user.id}) }}">
                                         </div>
                                     </td>
 
@@ -49,6 +49,29 @@
                         </table>
                     </div>
 
+                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                        <div class="toast-container">
+                            {% for user in users %}
+                            <div id="toast-user-{{ user.id }}" class="toast animation" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header align-items-start">
+                                    <figure class="m-0">
+                                      <img src="{{ asset('build/images/icon-user-confirmed.svg') }}" alt="Icon de confirmation de compte" width="22" height="22">
+                                    </figure>
+                                    <strong class="ms-3 me-auto">Compte confirmé</strong>
+                                    {#  <small class="text-muted">just now</small>#}
+                                    <button type="button" class="btn-close me-1" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                                <div class="toast-body">
+                                    <p class="mb-0">Le compte de <span class="fw-bold text-primary">{{ user.firstname }} {{ user.lastname }}</span> a été confirmé</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+
+
                 </section>
 
 
@@ -56,4 +79,44 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+        window.onload = ()=> {
+            function onChangeCheckApprove(){
+                const url = this.getAttribute('data-url');
+
+                axios.post(url).then ( (response) =>{
+                    let tr =  document.getElementById('tr-user-'+response.data.userId);
+                    let toast = document.getElementById('toast-user-'+response.data.userId);
+
+                    //REMOVE THE USER FROM LIST
+                    tr.classList.add('fadeOutRight');
+                    setTimeout(function(){
+                        tr.style.display ='none';
+                    }, 3000);
+
+
+                    //SHOW TOAST OF CONFIRMATION
+                    toast.classList.add('show', 'slideInUp');
+                    //...AND HIDE
+                    setTimeout(function(){
+                        toast.classList.add('fadeOut');
+                    }, 3000);
+                    setTimeout(function(){
+                        toast.classList.remove('show','slideInUp', 'fadeOut');
+                    }, 4200);
+                })
+            }
+
+            document.querySelectorAll('input.js-checked').forEach((checkedItem) =>{
+                checkedItem.addEventListener('change', onChangeCheckApprove)
+            })
+
+        };
+
+    </script>
 {% endblock %}

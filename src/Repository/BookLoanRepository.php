@@ -19,6 +19,17 @@ class BookLoanRepository extends ServiceEntityRepository
         parent::__construct($registry, BookLoan::class);
     }
 
+    public function findByStatus($reserved, $loaned){
+        return $this->createQueryBuilder('l')
+            ->where('l.status = :pending')
+            ->orWhere('l.status = :reserved')
+            ->setParameter('pending', $reserved)
+            ->setParameter('reserved',$loaned)
+            ->orderBy('l.date_loan','ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     // /**
     //  * @return BookLoan[] Returns an array of BookLoan objects
     //  */
