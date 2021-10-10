@@ -30,9 +30,12 @@ class CatalogController extends AbstractController
     public function index(TypeRepository $repository, EntityManagerInterface $entityManager): Response
     {
         $types = $entityManager->getRepository(Type::class)->findAll();
+        $books = $entityManager->getRepository(Book::class)->findAll();
 
         return $this->render('catalog/index.html.twig', [
-            'types'=>$types
+            'types'=>$types,
+            'books'=>$books
+
         ]);
     }
 
