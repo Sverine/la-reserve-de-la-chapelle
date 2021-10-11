@@ -129,7 +129,7 @@ class CatalogController extends AbstractController
             }
         ]);
 
-        $bookFound = json_decode($bookFound);
+        $bookFound =json_decode($bookFound);
 
         return $this->json([
             'message'=>'ohé',

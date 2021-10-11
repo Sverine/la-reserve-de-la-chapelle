@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -44,6 +46,14 @@ class RegisterType extends AbstractType
                 'label'=>'Date de naissance',
                 'widget'=>'single_text'
             ])
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Employé' => 'ROLE_EMPLOYE',
+                    'Admin' => 'ROLE_ADMIN',
+                ],
+                'expanded'=>true,
+                'multiple'  => true, // choix multiple
+            ])
             ->add('email', EmailType::class,[
                 'label'=>'Email',
                 'attr'=>[
@@ -61,7 +71,7 @@ class RegisterType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class,[
-                'label'=>"S'inscrire",
+                'label'=>"S'INSCRIRE",
                 'attr'=>[
                     'class'=>'w-100 mt-5 btn-primary'
                 ]

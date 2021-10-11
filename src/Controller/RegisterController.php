@@ -11,20 +11,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class RegisterController extends AbstractController
+class  RegisterController extends AbstractController
 {
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager){
-        $this->entityManager = $entityManager;
-    }
     /**
      * @Route("/inscription", name="register")
      */
-    public function index(Request $request, UserPasswordHasherInterface $hasher): Response
+    public function index(Request $request, UserPasswordHasherInterface $hasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
+        $form->remove('roles');
 
         $form->handleRequest($request);
 
@@ -34,8 +32,8 @@ class RegisterController extends AbstractController
             $password = $hasher->hashPassword($user, $user->getPassword());
             $user->setPassword($password);
 
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             $messages = ['Votre inscription a bien été enregistrée.',
                         'Un employé de la Réserve va étudier votre demande.'];
