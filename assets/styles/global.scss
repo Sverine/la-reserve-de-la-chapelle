@@ -187,11 +187,9 @@ form[name="book"] div{
   }
 }
 
-
-//TYPES CONTAINER
-.types-container >div >div{
-      position: relative;
-      z-index: 1;
+//CATALOG PAGE
+#search-section, #no-results-search-section, #lottie-animation{
+  display:none;
 }
 
 //DASHBOARD NAVIGATION

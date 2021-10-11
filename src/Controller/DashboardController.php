@@ -24,7 +24,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/ulisateur/{id}/confirmer", name="user_approve",  methods={"POST"})
+     * @Route("/dashboard/utilisateur/{id}/confirmer", name="user_approve",  methods={"POST"})
      * @param User $user
      * @param EntityManagerInterface $entityManager
      * @param UserRepository $userRepository
