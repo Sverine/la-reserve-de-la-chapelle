@@ -14,10 +14,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/catalogue")
@@ -30,9 +32,16 @@ class CatalogController extends AbstractController
     public function index(TypeRepository $repository, EntityManagerInterface $entityManager): Response
     {
         $types = $entityManager->getRepository(Type::class)->findAll();
+        $books = $entityManager->getRepository(Book::class)->findAll();
+        $searchForm = $this->createForm(SearchType::class);
+        $bookFound = [];
 
         return $this->render('catalog/index.html.twig', [
-            'types'=>$types
+            'types'=>$types,
+            'books'=>$books,
+            'form'=>$searchForm->createView(),
+            'bookFound' => $bookFound
+
         ]);
     }
 
@@ -66,7 +75,7 @@ class CatalogController extends AbstractController
 
     /** Permet de réserver un livre
      *
-     * @Route ("/livre/{id}/reserved", name="catalog_show_reserved", methods={"GET","POST"})
+     * @Route ("/livre/{id}/reserved", name="catalog_show_reserved", methods={"POST"})
      * @param Book $book
      * @param EntityManagerInterface $entityManager
      * @param BookRepository $repository
@@ -96,5 +105,35 @@ class CatalogController extends AbstractController
         return $this->redirectToRoute('catalog_show',[
             'id'=>$book->getId(),
         ]);
+    }
+
+    /**
+     * @Route ("/search/{booktitle}/", name="catalog_search")
+     * @param EntityManagerInterface $entityManager
+     * @param $booktitle
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function searchByTitle(EntityManagerInterface $entityManager, $booktitle, SerializerInterface $serializer)
+    {
+
+        $types = $entityManager->getRepository(Type::class)->findAll();
+        $books = $entityManager->getRepository(Book::class)->findAll();
+        $searchForm = $this->createForm(SearchType::class);
+
+        $bookFound = $entityManager->getRepository(Book::class)->findByTitle($booktitle);
+
+        $bookFound = $serializer->serialize($bookFound, 'json',[
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        $bookFound = json_decode($bookFound);
+
+        return $this->json([
+            'message'=>'ohé',
+            'bookFound'=>$bookFound
+        ],200);
     }
 }
