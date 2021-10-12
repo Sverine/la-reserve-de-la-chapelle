@@ -21,5 +21,9 @@
         "@popperjs/core": "^2.10.2",
         "bootstrap": "^5.1.1",
         "copy-webpack-plugin": "^9.0.1"
+    },
+    "engines": {
+        "node": "16.6.1",
+        "npm" : "7.20.3"
     }
 }
