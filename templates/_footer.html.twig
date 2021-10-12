@@ -1,0 +1,19 @@
+<div class="footer d-flex flex-column align-items-center {% if app.request.get('_route') == 'app_login' %}fixed-bottom mx-auto{% endif %}">
+    <figure class="my-5">
+        <img src="{{ asset('build/images/logo-white.png') }}"  alt="Logo La Réserve de la Chapelle">
+    </figure>
+    <div class="social-icons my-3 w-50 d-flex justify-content-center">
+        <figure class="m-3">
+            <img src="{{ asset('build/images/social-icon-fb.svg') }}"  alt="Logo Facebook">
+        </figure>
+        <figure class="m-3">
+            <img src="{{ asset('build/images/social-icon-twt.svg') }}"  alt="Logo Twitter">
+        </figure>
+        <figure class="m-3">
+            <img src="{{ asset('build/images/social-icon-in.svg') }}"  alt="Logo Instagram">
+        </figure>
+        <figure class="m-3">
+            <img src="{{ asset('build/images/social-icon-yt.svg') }}"  alt="Logo Youtube">
+        </figure>
+    </div>
+</div>

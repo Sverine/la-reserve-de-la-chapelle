@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard | La Réserve de la Chapelle{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid dashboard">
+        <div class="row col">
+            {{ include ('_dashboard-navigation.html.twig') }}
+            <div class="col mt-3 ms-5">
+                {{ include ('_navigation.html.twig') }}
+
+                {# TITLE OF DASHBOARD]#}
+                <section class="mt-5 pt-5">
+                    <h1 class="mt-5">Bonjour {{ app.user.firstname }}</h1>
+                    <div class="d-flex justify-content-start">
+                        <figure class="me-2"><img src="{{ asset('build/images/icon-info.svg') }}" alt="Icon d'information" width="24" height="24"></figure>
+                        <p>Il y a <span class="fw-bold">{{ users|length }}</span> compte{% if users|length>1 %}s{% endif %} à confirmer aujourd'hui</p>
+                    </div>
+                </section>
+
+                <section class="mt-5 pt-5">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="fw-bold border-0">Nom</th>
+                                <th class="fw-bold border-0">Prénom</th>
+                                <th class="fw-bold border-0">Date d'inscription</th>
+                                <th class="fw-bold border-0">Statut</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr id="tr-user-{{ user.id }}" class="animation">
+                                    <td class="border-0">{{ user.lastname }}</td>
+                                    <td class="border-0">{{ user.firstname }}</td>
+                                    <td class="border-0">{{ user.dateInscription ? user.dateInscription|date('d/m/Y') : '' }}</td>
+                                    <td class="border-0">{% if user.isConfirmed == false %}En attente{% endif %}</td>
+                                    <td class="border-0">
+                                        <div class="form-check">
+                                            <input class="form-check-input js-checked" type="checkbox" id="defaultCheck1" aria-label="default" data-url="{{ path('user_approve',{'id':user.id}) }}">
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                        <div class="toast-container">
+                            {% for user in users %}
+                            <div id="toast-user-{{ user.id }}" class="toast animation" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header align-items-start">
+                                    <figure class="m-0">
+                                      <img src="{{ asset('build/images/icon-user-confirmed.svg') }}" alt="Icon de confirmation de compte" width="22" height="22">
+                                    </figure>
+                                    <strong class="ms-3 me-auto">Compte confirmé</strong>
+                                    {#  <small class="text-muted">just now</small>#}
+                                    <button type="button" class="btn-close me-1" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                                <div class="toast-body">
+                                    <p class="mb-0">Le compte de <span class="fw-bold text-primary">{{ user.firstname }} {{ user.lastname }}</span> a été confirmé</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+
+
+                </section>
+
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+        window.onload = ()=> {
+            function onChangeCheckApprove(){
+                const url = this.getAttribute('data-url');
+
+                axios.post(url).then ( (response) =>{
+                    let tr =  document.getElementById('tr-user-'+response.data.userId);
+                    let toast = document.getElementById('toast-user-'+response.data.userId);
+
+                    //REMOVE THE USER FROM LIST
+                    tr.classList.add('fadeOutRight');
+                    setTimeout(function(){
+                        tr.style.display ='none';
+                    }, 3000);
+
+
+                    //SHOW TOAST OF CONFIRMATION
+                    toast.classList.add('show', 'slideInUp');
+                    //...AND HIDE
+                    setTimeout(function(){
+                        toast.classList.add('fadeOut');
+                    }, 3000);
+                    setTimeout(function(){
+                        toast.classList.remove('show','slideInUp', 'fadeOut');
+                    }, 4200);
+                })
+            }
+
+            document.querySelectorAll('input.js-checked').forEach((checkedItem) =>{
+                checkedItem.addEventListener('change', onChangeCheckApprove)
+            })
+
+        };
+
+    </script>
+{% endblock %}

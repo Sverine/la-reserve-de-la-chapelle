@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -21,6 +22,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('catalog_filter', './assets/catalog_filter.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -55,8 +57,19 @@ Encore
         config.corejs = 3;
     })
 
+
     // enables Sass/SCSS support
     .enableSassLoader()
+
+    // configure CopyWebpackPlugin for images
+    .addPlugin( new CopyWebpackPlugin({
+        patterns: [
+            { from: './assets/images', to: 'images' }
+        ],
+        options: {
+            concurrency: 100,
+        },
+    }))
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -70,6 +83,8 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
 ;
 
 module.exports = Encore.getWebpackConfig();
+

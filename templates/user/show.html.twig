@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ user.firstname }} {{ user.lastname}} | La Réserve de la Chapelle{% endblock %}
+
+{% block body %}
+<div class="container-fluid dashboard">
+    <div class="row col">
+        {{ include ('_dashboard-navigation.html.twig') }}
+        <div class="col mt-3 ms-5">
+            {{ include ('_navigation.html.twig') }}
+
+            <section class="mt-5 pt-5">
+                <a class="text-uppercase fw-bold text-decoration-none ps-5" href="{{ path('user_index') }}"> &#60 Retourner aux employés</a>
+                <h1 class="mt-5 ps-5">{{ user.firstname }} {{ user.lastname }}</h1>
+            </section>
+
+            <section class="me-5 ps-5">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Roles</th>
+                        <td>{% for role in user.roles  %}
+                            {% if role == 'ROLE_ADMIN' %}Admin{% elseif role == 'ROLE_EMPLOYE' %}Employé{% endif %}
+                            {% endfor %}</td>
+                    </tr>
+                    <tr>
+                        <th>Prénom</th>
+                        <td>{{ user.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom de famille</th>
+                        <td>{{ user.lastname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de naissance</th>
+                        <td>{{ user.dateBirth ? user.dateBirth|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Addresse</th>
+                        <td>{{ user.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date d'inscription</th>
+                        <td>{{ user.dateInscription ? user.dateInscription|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
