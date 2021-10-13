@@ -57,6 +57,7 @@ class BookLoan
     public function __construct(){
          $this->date_reserved = new \DateTime('now');
          $this->status = 'Réservé';
+        $this->is_late = 0;
          return $this;
     }
 

@@ -37,7 +37,7 @@
                 {% for loan in loans %}
                     <tr class="{% if loan.isLate and loan.dateReturn == null %}is-late{% endif %}">
                         <td class="border-0">{{ loan.book.title | capitalize }}</td>
-                        <td class="border-0">{{ loan.user | capitalize}} {{ loan.user.lastname | capitalize }}</td>
+                        <td class="border-0">{{ loan.book.author | title }} </td>
                         <td class="border-0">{{ loan.dateReserved|date('d/m/Y - H:m') }}</td>
                         <td class="border-0">{{ loan.dateLoan ? loan.dateLoan|date('d/m/Y - H:m') : '--' }}</td>
                         <td class="border-0">{{ loan.dateReturn ? loan.dateReturn|date('d/m/Y - H:m') : '--' }}</td>

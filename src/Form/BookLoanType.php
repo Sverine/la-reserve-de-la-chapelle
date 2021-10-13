@@ -21,12 +21,6 @@ class BookLoanType extends AbstractType
                 'time_widget'=>'single_text',
                 'disabled'=>true
             ])
-            ->add('date_loan',DateTimeType::class,[
-                'label'=>'Date et heure de l\'emprunt',
-                'date_widget'=>'single_text',
-                'time_widget'=>'single_text',
-                'disabled'=>true
-            ])
             ->add('status',ChoiceType::class,[
                 'label'=>'Statut',
                 'attr'=>['class'=>'input-js'],

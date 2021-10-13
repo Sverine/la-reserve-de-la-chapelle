@@ -1,4 +1,6 @@
 window.onload = () =>{
+    let currentUrl = window.location.href;
+    let domainName = window.location.origin
 
     // SEARCH BY TYPE
     let elem = document.querySelector('.book-items');
@@ -11,9 +13,9 @@ window.onload = () =>{
 
     select.addEventListener('change',(event)=>{
 
-        let test = event.target;
-        test = test.options[test.selectedIndex].getAttribute('data-filter');
-        iso.arrange({ filter: test });
+        let testValue = event.target;
+        testValue = testValue.options[testValue.selectedIndex].getAttribute('data-filter');
+        iso.arrange({ filter: testValue });
     })
 
 
@@ -76,10 +78,10 @@ window.onload = () =>{
         let bookFoundIsReserve = document.getElementById('bookFoundIsReserved');
 
         document.getElementById('search-section').style.display = "flex";
-        document.getElementById('bookFound').href ='http://127.0.0.1:8000/catalogue/livre/'+bookId;
+        document.getElementById('bookFound').href = currentUrl+'livre/'+bookId;
         document.getElementById('bookFoundTitle').innerText = bookTitle;
         document.getElementById('bookFoundAuthor').innerText = bookAuthor;
-        document.getElementById('bookFoundCover').src ='http://127.0.0.1:8000/images/covers/'+bookCover
+        document.getElementById('bookFoundCover').src = domainName+'/images/covers/'+bookCover
 
         bookIsFavorite ? bookFoundIsFavorite.style.display = "block" : bookFoundIsFavorite.style.display = "none" ;
         bookIsReserved ? bookFoundIsReserve.style.display = "block" : bookFoundIsReserve.style.display = "none" ;

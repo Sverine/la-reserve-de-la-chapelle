@@ -25,13 +25,15 @@ class BookLoanController extends AbstractController
         $loansInLate = 0;
 
         foreach($loans as $loan){
-            $diff = $loan->getDateLoan()->diff(new \DateTime('now'));
-            if($diff->d >= 21){
-                $loan->setIsLate(1);
-                $loansInLate += 1;
+            if ($loan->getDateLoan()){
+                $diff = $loan->getDateLoan()->diff(new \DateTime('now'));
+                if($diff->days >= 21){
+                    $loan->setIsLate(1);
+                    $loansInLate += 1;
 
-                $entityManager->persist($loan);
-                $entityManager->flush();
+                    $entityManager->persist($loan);
+                    $entityManager->flush();
+                }
             }
         }
 

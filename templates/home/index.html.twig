@@ -21,8 +21,8 @@
             <div class="d-flex flex-column  flex-xl-row justify-content-between w-100 px-5 m-5">
                 <div class="w-50 me-5">
                     <p class="fw-light">
-                        En rutrum cursus placerat. Sed condimentum augue ut ante luctus, vitae ornare nibh tempus. Sed bibendum ante justo, <strong class="fw-bold">eget dictum ligula gravida non</strong>.
-                        Morbi eu gravida elit, rhoncus rhoncus mi. Morbi vehicula enim vel enim suscipit, nec iaculis magna feugiat. Maecenas vel tortor blandit, efficitur ipsum id, accumsan sapien. <strong class="fw-bold">Phasellus nec lacus</strong> ut risus faucibus bibendum.
+                        Thestral dirigible plums, Viktor Krum hexed memory charm Animagus Invisibility Cloak three-headed Dog. Half-Blood Prince Invisibility Cloak <strong class="fw-bold">cauldron cakes</strong>, hiya Harry! Basilisk venom Umbridge swiveling blue eye Levicorpus.
+                        Chasers Winky quills The Boy Who Lived bat spleens <strong class="fw-bold">cupboard under the stairs</strong> flying motorcycle. Sirius Black Holyhead Harpies
                     </p>
                     <p class="fw-light">
                         Pellentesque quis erat arcu. Sed pellentesque feugiat velit, eu lobortis ligula feugiat sed. Duis eu interdum est, ac <strong class="fw-bold">pharetra velit</strong>. In imperdiet pulvinar nunc, dictum ullamcorper tellus dignissim quis.
@@ -44,28 +44,7 @@
          <section>
              <h2 class="text-center m-5">Nos coups de cœur</h2>
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                {#  <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>#}
                 <div class="carousel-inner">
-
-                    {#  {% for book in favoriteBooks %}
-                        <div class="carousel-item active">
-                            <div class="d-flex mx-auto  rounded-3 mt-5 px-3">
-                                <figure class="me-5">
-                                    <img src="{{ asset('build/images/test.png') }}"  class="w-100" alt="...">
-                                </figure>
-                                <div class="infos d-flex flex-column align-items-start justify-content-center">
-                                    <h3>{{ book.title | capitalize}}</h3>
-                                    <h6>{{ book.author }}</h6>
-                                    <p>{{ book.description |slice(0, 400) | nl2br }} ...</p>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}#}
-
                     {% for book in favoriteBooks %}
                     <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}" data-bs-interval="4000">
                         <div class="d-flex mx-auto rounded-3 mt-5 px-3">
@@ -80,23 +59,6 @@
                         </div>
                     </div>
                     {% endfor %}
-
-                    {#  <div class="carousel-item">
-                        <div class="d-flex mx-auto  rounded-3 mt-5 px-3">
-                            <figure class="me-5">
-                                <img src="{{ asset('build/images/test2.png') }}"  class="w-100" alt="..." style="transform: rotate(347deg);">
-                            </figure>
-                            <div class="infos d-flex flex-column align-items-start justify-content-center">
-                                <h3>Hagrid et les huit nains</h3>
-                                <h6>Palmer Dufour</h6>
-                                <p>
-                                    Paenitet me quod tu me rogas? Oh, sic, qui stultus plastic continentis rogavi te ut emas. Vides non manducare acidum hydrofluoric per plastic.
-                                    Erit autem dissolvere metalli petram,
-                                    vitrum, tellus. Ita quod illic '. Quam de aliquo cum aliqua interdum, maybe? Aliquid viride, huh? Quam vos sunt etiam vivere?
-                                </p>
-                            </div>
-                        </div>
-                    </div>#}
 
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -118,6 +80,45 @@
                     <a class="text-white text-decoration-none text-uppercase fw-normal" href="{{ path('register') }}">Je m'inscris</a>
                 </button>
             </div>
+        </section>
+
+        <section>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled">Disabled</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
         </section>
 
         {{ include ('_footer.html.twig') }}

@@ -61,9 +61,9 @@
                                     </div>
 
                                     <div class="modal-body mt-0 px-5 pt-0">
-                                        <p>Vous êtes sur le point de réserver ce livre.</p>
+                                        <p class="fw-bold text-center">Vous êtes sur le point de réserver ce livre.</p>
                                         <p>Une fois la réservation confirmée, vous disposez de 72heures pour récupérer votre livre à la Réserve.</p>
-                                        <p>Passé ce délai, le livre sera de nouveau disponible à la réservation pour tout les adhérents.</p>
+                                        <p>Passé ce délai, le livre sera de nouveau disponible à la réservation.</p>
                                         <form method="post" action="{{ path('catalog_show_reserved', {'id': book.id}) }}">
                                             <button class="mb-5 mt-3 w-100 btn btn-primary connect-button text-uppercase" type="submit">Confirmer</button>
                                         </form>
@@ -106,5 +106,8 @@
                 {% endfor %}
                 </div>
         </section>
+
+        {{ include ('_footer.html.twig') }}
+
     </div>
 {% endblock %}
