@@ -66,15 +66,6 @@ class BookLoanController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="loan_show", methods={"GET"})
-     */
-    public function show(BookLoan $bookLoan): Response
-    {
-        return $this->render('loan/show.html.twig', [
-            'loan' => $bookLoan,
-        ]);
-    }
 
     /**
      * @Route("/{id}/modifier", name="loan_edit", methods={"GET","POST"})
