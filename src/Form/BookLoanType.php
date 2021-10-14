@@ -6,9 +6,10 @@ use App\Entity\BookLoan;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\Type as TypeConstraint;
 
 class BookLoanType extends AbstractType
 {
@@ -19,7 +20,10 @@ class BookLoanType extends AbstractType
                 'label'=>'Date et heure de la réservation',
                 'date_widget'=>'single_text',
                 'time_widget'=>'single_text',
-                'disabled'=>true
+                'disabled'=>true,
+                'constraints'=>[
+                    new TypeConstraint(['DateTimeInterface'])
+                ]
             ])
             ->add('status',ChoiceType::class,[
                 'label'=>'Statut',
@@ -28,6 +32,11 @@ class BookLoanType extends AbstractType
                     'Réservé'=>'Réservé',
                     'Emprunté'=>'Emprunté',
                     'Rendu'=>'Rendu',
+                ],
+                'constraints'=>[
+                    new Choice([
+                        'Emprunté', 'Rendu'
+                    ])
                 ]
             ])
         ;
