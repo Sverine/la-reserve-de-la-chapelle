@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil | La Réserve de la Chapelle{% endblock %}
+
+{% block body %}
+<div class="container-xxl box-shadow is-bg">
+    {{ include ('_navigation.html.twig') }}
+
+    {# TITLE]#}
+    <section class="m-5 p-5">
+        <h1 class="mt-5">Mon profil</h1>
+    </section>
+    <section class="m-5 p-5 d-flex align-items-center">
+        <div class="d-flex flex-column me-xxl-5">
+            <figure>
+                <img id="js-img" src="" height="280" width="280" alt="Illustration aléatoire de profil">
+            </figure>
+            <a id="js-random" style="cursor:pointer">
+                <figure>
+                    <img src="{{ asset('build/images/icon-reload.svg') }}" height="25" width="25" alt="Icon de rechargement de la photo de profil">
+                </figure>
+            </a>
+        </div>
+
+        <div class="flex-grow-1 ms-xxl-5">
+            {{ form_start(form) }}
+            <div class="d-flex">
+                <div class="flex-grow-1 me-xl-2">{{ form_row(form.firstname) }}</div>
+                <div class="flex-grow-1 ms-xl-2">{{ form_row(form.lastname) }}</div>
+            </div>
+            <div>{{ form_rest(form) }}</div>
+            <button id="js-btn" class="w-100 mb-5 mt-3 btn btn-primary connect-button" type="submit">Modifier</button>
+            {{ form_end(form) }}
+        </div>
+
+    </section>
+
+    {{ include ('_footer.html.twig') }}
+
+</div>
+{% endblock %}
+
+{% block javascrips_end_body %}
+    <script>
+        window.onload=()=>{
+
+            document.getElementById('js-btn').disabled = true;
+            let inputs = document.getElementsByTagName('input');
+            console.log(inputs.length)
+
+            for(let input of inputs){
+                input.addEventListener('change',()=>{
+                    document.getElementById('js-btn').disabled = false;
+                })
+            }
+
+            let number = Math.floor(1 + Math.random() * 7);
+            document.getElementById('js-img').src = window.location.origin+'/images/avatar-'+number+'.svg';
+
+            document.getElementById('js-random').addEventListener('click',()=>{
+                number = Math.floor(1 + Math.random() * 7);
+                document.getElementById('js-img').src = window.location.origin+'/images/avatar-'+number+'.svg';
+            })
+        }
+    </script>
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RegisterController!{% endblock %}
+{% block title %}S'inscrire | La Réserve de la Chapelle{% endblock %}
 
 {% block body %}
 
@@ -31,6 +31,8 @@
                 <div class="w-100 w-sm-50 me-sm-2">{{ form_row(form.firstname) }}</div>
                 <div class="w-100 w-sm-50 ms-sm-2">{{ form_row(form.lastname) }}</div>
             </div>
+            {{ form_rest(form) }}
+            <button class="w-100 mb-5 mt-3 btn btn-primary connect-button text-uppercase" type="submit">Enregistrer</button>
             {{ form_end(form) }}
         </section>
 

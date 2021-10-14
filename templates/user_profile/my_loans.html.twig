@@ -6,7 +6,7 @@
 <div class="container-xxl box-shadow is-bg">
     {{ include ('_navigation.html.twig') }}
 
-    {# TITLE OF DASHBOARD]#}
+    {# TITLE]#}
     <section class="m-5 p-5">
         <h1 class="mt-5">Mes emprunts</h1>
             {% for loan in loans %}
@@ -49,6 +49,8 @@
         </div>
 
     </section>
+
+    {{ include ('_footer.html.twig') }}
 
 
 </div>

@@ -55,10 +55,7 @@ class RegisterType extends AbstractType
                 'multiple'  => true, // choix multiple
             ])
             ->add('email', EmailType::class,[
-                'label'=>'Email',
-                'attr'=>[
-                    'placeholder'=>'dwight.schrute@la-reserve.com'
-                ]
+                'label'=>'Email'
             ])
             ->add('password', RepeatedType::class,[
                 'type'=> PasswordType::class,
@@ -68,12 +65,6 @@ class RegisterType extends AbstractType
                 ],
                 'second_options'=>[
                     'label'=>'Confirmer le mot de passe'
-                ]
-            ])
-            ->add('submit', SubmitType::class,[
-                'label'=>"S'INSCRIRE",
-                'attr'=>[
-                    'class'=>'w-100 mt-5 btn-primary'
                 ]
             ])
         ;
