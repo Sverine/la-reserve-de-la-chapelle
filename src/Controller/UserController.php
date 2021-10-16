@@ -23,7 +23,7 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         $users = $userRepository->findByRoles();
-        return $this->render('user/index.html.twig', [
+        return $this->render('user/my_loans.html.twig', [
             'users'=>$users
         ]);
     }
@@ -42,6 +42,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $hasher->hashPassword($user, $user->getPassword());
             $user->setPassword($password);
+            $user->setIsConfirmed(true);
 
             $entityManager->persist($user);
             $entityManager->flush();

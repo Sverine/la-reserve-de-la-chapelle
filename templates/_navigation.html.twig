@@ -38,7 +38,9 @@
 
                     {% if app.user%}
 
-                        {% if is_granted ('ROLE_ADMIN') %}
+                        {% if is_granted ('ROLE_SUBSCRIBER') %}
+
+                            {# DISPLAY "CATALOGUE" IN NAVIGATION #}
                             {% if route != '/catalogue/' %}
                             <li class="nav-item me-3 text-white is-catalog px-3 d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" class="me-2"
@@ -54,6 +56,9 @@
                                 <a href="{{ path('catalog') }}" class="{% if route == '/' or route == '/catalogue/' %} text-white {% else %} text-body {% endif %}m-1 text-decoration-none">Catalogue</a>
                             </li>
                             {% endif %}
+
+                            {# DISPLAY "DASHBOARD" IN NAVIGATION #}
+                            {% if is_granted ('ROLE_EMPLOYE') %}
                             <li class="nav-item me-3 border border-white rounded-3 px-2 py-1">
                                 <a href="{{ path('app_logout') }}" class="{% if route == '/' or route == '/catalogue/' %} text-white {% else %} text-body {% endif %}text-decoration-none">Se déconnecter</a>
                             </li>
@@ -62,28 +67,33 @@
                                 <a href="{{ path('dashboard') }}" class="text-white m-1 text-decoration-none">Dashboard</a>
                             </li>
 
-                        {% else %}
-                        <li class="nav-item me-3">
-                            <p class="{% if route == '/' or route == '/catalogue/' %} text-white {% else %} text-body {% endif %}my-0">Bonjour {{ app.user.firstname }}</p>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle bg-info rounded-3 text-white is-catalog px-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Mon compte
-                            </a>
-                            <ul class="dropdown-menu mt-3" aria-labelledby="navbarDropdown">
-                                <li class="text-end my-2"><a class="dropdown-item" href="{{ path('user_loans') }}">Mes emprunts</a></li>
-                                <li class="text-end my-2"><a class="dropdown-item" href="#">Mon profil</a></li>
-                                <li class="text-end my-2 text-info">
-                                    <a class="dropdown-item d-flex justify-content-end text-secondary" href="{{ path('app_logout') }}">
-                                        <figure class="me-2 my-0">
-                                            <img src="{{ asset('build/images/icon-logout.svg') }}" alt="Icon de déconnexion" width="18" height="18">
-                                        </figure>
-                                        Me déconnecter</a>
+
+                            {# DISPLAY "MON COMPTE" IN NAVIGATION #}
+                            {% else %}
+                                <li class="nav-item me-3">
+                                    <p class="{% if route == '/' or route == '/catalogue/' %} text-white {% else %} text-body {% endif %}my-0">Bonjour {{ app.user.firstname }}</p>
                                 </li>
-                            </ul>
-                        </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle bg-info rounded-3 text-white is-catalog px-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Mon compte
+                                    </a>
+                                    <ul class="dropdown-menu mt-3" aria-labelledby="navbarDropdown">
+                                        <li class="text-end my-2"><a class="dropdown-item" href="{{ path('my_loans') }}">Mes emprunts</a></li>
+                                        <li class="text-end my-2"><a class="dropdown-item" href="{{ path('my_profile' , {'id': app.user.id}) }}">Mon profil</a></li>
+                                        <li class="text-end my-2 text-info">
+                                            <a class="dropdown-item d-flex justify-content-end text-secondary" href="{{ path('app_logout') }}">
+                                                <figure class="me-2 my-0">
+                                                    <img src="{{ asset('build/images/icon-logout.svg') }}" alt="Icon de déconnexion" width="18" height="18">
+                                                </figure>
+                                                Me déconnecter</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+
                         {% endif %}
 
+                    {# DISPLAY "S'INSCRIRE" AND "SE CONNECTER" IN NAVIGATION #}
                     {% else %}
                         <li class="nav-item me-3">
                             <a class="nav-link {% if route == '/' or route == '/catalogue/' %} text-white {% else %} text-body {% endif %}" href="{{ path('app_login') }}">Se connecter</a>

@@ -12,7 +12,7 @@
 
                 {# TITLE OF DASHBOARD]#}
                 <section class="mt-5 pt-5">
-                    <h1 class="mt-5">Bonjour {{ app.user.firstname }}</h1>
+                    <h1 class="mt-5">Bonjour {{ app.user.firstname | capitalize }}</h1>
                     <div class="d-flex justify-content-start">
                         <figure class="me-2"><img src="{{ asset('build/images/icon-info.svg') }}" alt="Icon d'information" width="24" height="24"></figure>
                         <p>Il y a <span class="fw-bold">{{ users|length }}</span> compte{% if users|length>1 %}s{% endif %} à confirmer aujourd'hui</p>
@@ -33,9 +33,9 @@
                             <tbody>
                             {% for user in users %}
                                 <tr id="tr-user-{{ user.id }}" class="animation">
-                                    <td class="border-0">{{ user.lastname }}</td>
-                                    <td class="border-0">{{ user.firstname }}</td>
-                                    <td class="border-0">{{ user.dateInscription ? user.dateInscription|date('d/m/Y') : '' }}</td>
+                                    <td class="border-0">{{ user.lastname | capitalize }}</td>
+                                    <td class="border-0">{{ user.firstname | capitalize }}</td>
+                                    <td class="border-0">{{ user.dateInscription|date('d/m/Y - H:s')}}</td>
                                     <td class="border-0">{% if user.isConfirmed == false %}En attente{% endif %}</td>
                                     <td class="border-0">
                                         <div class="form-check">
@@ -62,7 +62,7 @@
                                     <button type="button" class="btn-close me-1" data-bs-dismiss="toast" aria-label="Close"></button>
                                 </div>
                                 <div class="toast-body">
-                                    <p class="mb-0">Le compte de <span class="fw-bold text-primary">{{ user.firstname }} {{ user.lastname }}</span> a été confirmé</p>
+                                    <p class="mb-0">Le compte de <span class="fw-bold text-primary">{{ user.firstname | capitalize }} {{ user.lastname | capitalize }}</span> a été confirmé</p>
                                 </div>
                             </div>
                             {% endfor %}

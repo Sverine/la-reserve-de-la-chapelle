@@ -3,6 +3,8 @@
 @import "~bootstrap/scss/bootstrap";
 
 //GENERALS
+
+
 img{
   width:100%;
 }
@@ -99,6 +101,10 @@ body.is-bg{
       min-width: 200px;
     }
   }
+}
+
+.book-cover-show >img{
+  width:101%;
 }
 
 //HEADER
@@ -249,7 +255,7 @@ section{
         top:5%;
         right: -2.5%;
         &.is-book{
-          right: -1.6%;
+          right: -2.3%;
         }
       }
     .book-cover-info{
@@ -288,11 +294,6 @@ section{
     }
   }
 }
-
-
-
-
-
 
 //MEDIA QUERIES
 @media screen and (max-width:576px){

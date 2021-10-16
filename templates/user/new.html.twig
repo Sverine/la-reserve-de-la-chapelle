@@ -1,11 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}Ajouter un nouvel employé | La Réserve de la Chapelle{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+<div class="container-fluid dashboard">
+    <div class="row col">
+        {{ include ('_dashboard-navigation.html.twig') }}
+        <div class="col mt-3 ms-5">
+            {{ include ('_navigation.html.twig') }}
 
-    {{ include('user/_form.html.twig') }}
+            <section class="mt-5 pt-5">
+                <a class="text-uppercase fw-bold text-decoration-none" href="{{ path('user_index') }}"> &#60 Retourner aux employés</a>
+                <h1 class="mt-5">Créer un nouvel employé</h1>
+            </section>
 
-    <a href="{{ path('user_index') }}">back to list</a>
+            <section class="row my5 me-5 pt-5">
+                <div class="col-8">
+                    {{ form_start(form) }}
+                    <div class="row d-flex flex-column flex-sm-row justify-content-between">
+                        <div class="col-12 col-md-5  me-sm-2">{{ form_row(form.firstname) }}</div>
+                        <div class="col-12 col-md-5 ms-sm-2">{{ form_row(form.lastname) }}</div>
+                    </div>
+
+                    <div class="w-100 me-sm-2">{{ form_row(form.address) }}</div>
+
+                    <div class="row d-flex flex-column flex-sm-row justify-content-between">
+                        <div class="col-12 col-md-5  me-sm-2">{{ form_row(form.date_birth) }}</div>
+                        <div class="col-12 col-md-5 ms-sm-2">{{ form_row(form.roles) }}</div>
+                    </div>
+
+                    <div class="w-100  me-sm-2">{{ form_row(form.email) }}</div>
+
+                    <div class="w-100  me-sm-2">{{ form_row(form.password) }}</div>
+
+                    <button class="btn btn-primary connect-button w-100 text-uppercase mt-3 mb-5 text-uppercase" type="submit">Enregistrer
+                    </button>
+
+                    {{ form_end(form) }}
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}

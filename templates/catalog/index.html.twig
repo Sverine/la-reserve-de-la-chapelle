@@ -7,23 +7,21 @@
         {{ include ('_navigation.html.twig') }}
 
         {# HEADER #}
-        <section>
-            <div class="header d-flex flex-column justify-content-center align-items-center is-catalog" style="background-image:url('{{ asset('build/images/catalog-bg.png') }}')">
-                <h1 class="text-center text-light mt-5">Je recherche ...</h1>
-                <div class="input-group mt-3 w-50 d-flex">
-                    <span class="input-group-text bg-white border-white">
-                        <figure class="mb-0">
-                            <img src="{{ asset('build/images/icon-search.svg') }}" alt="Icon de recherche" height="24" width="24">
-                        </figure>
-                    </span>
-                    {{ form_start(form, {'attr' : {'class': 'flex-grow-1'}}) }}
-                    {{ form_widget(form, { 'attr': {'class': 'form-control py-2 search-catalog border-white'} }) }}
-                    {{ form_end(form) }}
-                    {#  <input type="text" class="form-control py-2 search-catalog border-white" placeholder="Hagrid et les sept nains ..." name="search-by-title" aria-label="searchByTitle">#}
-                </div>
-                {#  <form class="mt-3 w-50"><input type="text" id="" placeholder="Hagrid et les septs nains ..." class="form-control py-2" name="searchByTitle"></form>#}
+        <div class="header d-flex flex-column justify-content-center align-items-center is-catalog" style="background-image:url('{{ asset('build/images/catalog-bg.png') }}')">
+            <h1 class="text-center text-light mt-5">Je recherche ...</h1>
+            <div class="input-group mt-3 w-50 d-flex">
+                <span class="input-group-text bg-white border-white">
+                    <figure class="mb-0">
+                        <img src="{{ asset('build/images/icon-search.svg') }}" alt="Icon de recherche" height="24" width="24">
+                    </figure>
+                </span>
+                {{ form_start(form, {'attr' : {'class': 'flex-grow-1'}}) }}
+                {{ form_widget(form, { 'attr': {'class': 'form-control py-2 search-catalog border-white', 'placeholder':'Hagrid et les sept nains'} }) }}
+                {{ form_end(form) }}
+                {#  <input type="text" class="form-control py-2 search-catalog border-white" placeholder="Hagrid et les sept nains ..." name="search-by-title" aria-label="searchByTitle">#}
             </div>
-        </section>
+            {#  <form class="mt-3 w-50"><input type="text" id="" placeholder="Hagrid et les septs nains ..." class="form-control py-2" name="searchByTitle"></form>#}
+        </div>
 
         <section style="height:150px">
             <div class="d-flex align-items-center float-end mt-5 me-5">
@@ -35,7 +33,7 @@
                     <option data-filter="*" selected>Tous les livres</option>
                     {% if app.request.get('_route') ==  'catalog'%}
                         {% for type in types %}
-                            <option value="{{ type.name }}" data-filter=".{{ type.name | lower | slug }}">{{ type.name | capitalize}}</option>
+                            <option value="{{ type.name }}" data-filter=".{{ type.name | lower | slug | capitalize }}">{{ type.name | capitalize}}</option>
                         {% endfor %}
                     {% endif %}
                 </select>
@@ -78,7 +76,7 @@
             <div class="book-items d-flex flex-column flex-md-row flex-md-wrap m-5">
                 {% if app.request.get('_route') ==  'catalog'%}
                     {% for book in books %}
-                        <a href="{{ path('catalog_show', {'id':book.id}) }}" class="book-item mx-5 {% for type in book.type %}{{ type.name }} {% endfor %}">
+                        <a href="{{ path('catalog_show', {'id':book.id}) }}" class="book-item mx-5 {% for type in book.type %}{{ type.name | capitalize }} {% endfor %}">
                             <div class="book-cover-show is-catalog rounded-4">
                                 <figure>
                                     <img src="{{ vich_uploader_asset(book,'folderImage') }}" alt="Photo de couverture du livre" class="rounded-4">
@@ -105,16 +103,18 @@
             </div>
         </section>
 
+
         {{ include ('_footer.html.twig') }}
 
     </div>
 {% endblock %}
 
-{% block javascripts %}
+{% block javascrips_end_body %}
     {#  USING ISOTOPE TO FILTER BY TYPE #}
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     {{ encore_entry_script_tags('catalog_filter') }}
+
 
 {% endblock %}
 
