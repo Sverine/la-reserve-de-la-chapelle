@@ -52,9 +52,9 @@
                                 <img src="{{ vich_uploader_asset(book,'folderImage') }}" alt="Photo de couverture du livre" class="rounded-3">
                             </figure>
                             <div class="infos d-flex flex-column align-items-start justify-content-center">
-                                <h3>{{ book.title | capitalize}}</h3>
+                                <h3>{{ book.title}}</h3>
                                 <h6>{{ book.author }}</h6>
-                                <p>{{ book.description |slice(0, 400) | nl2br }} ...</p>
+                                <p>{{ book.description |slice(0, 400) }} ...</p>
                             </div>
                         </div>
                     </div>

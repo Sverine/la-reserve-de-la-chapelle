@@ -91,6 +91,14 @@
                                 </li>
                             {% endif %}
 
+
+                        {% else %}
+                            <li class="nav-item me-3">
+                                <a class="nav-link {% if route == '/' or route == '/catalogue/' %} text-white {% else %} text-body {% endif %}" href="{{ path('app_login') }}">Se connecter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  bg-info rounded-3 text-white" href="{{ path('register') }}">S'inscrire</a>
+                            </li>
                         {% endif %}
 
                     {# DISPLAY "S'INSCRIRE" AND "SE CONNECTER" IN NAVIGATION #}

@@ -163,6 +163,10 @@ body.is-bg{
   max-width:800px;
 }
 
+.login-form{
+  max-height:415px;
+}
+
 form[name="book"] div{
   #book_type{
     display:flex;
@@ -308,9 +312,8 @@ section{
   }
 }
 
-@media screen and (min-width: 1399px){
+@include media-breakpoint-up(xxl){
   .container-fluid.dashboard .vertical-nav >figure:last-child{
     left: 8.2% !important;
   }
 }
-

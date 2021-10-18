@@ -75,7 +75,7 @@ class CatalogController extends AbstractController
 
     /** Permet de réserver un livre
      *
-     * @Route ("/livre/{id}/reserved", name="catalog_show_reserved", methods={"POST"})
+     * @Route ("/livre/{id}/reserver", name="catalog_show_reserved", methods={"POST"})
      * @param Book $book
      * @param EntityManagerInterface $entityManager
      * @param BookRepository $repository
@@ -86,7 +86,6 @@ class CatalogController extends AbstractController
         if(!$book->getIsReserved()){
             $book->setIsReserved(true);
 
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($book);
             $entityManager->flush();
 
@@ -132,7 +131,6 @@ class CatalogController extends AbstractController
         $bookFound =json_decode($bookFound);
 
         return $this->json([
-            'message'=>'ohé',
             'bookFound'=>$bookFound
         ],200);
     }

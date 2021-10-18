@@ -30,6 +30,15 @@ class BookLoanRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function findByDateReserved(){
+
+        return $this->createQueryBuilder('l')
+            ->where('l.date_reserved IS NOT NULL')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return BookLoan[] Returns an array of BookLoan objects
     //  */

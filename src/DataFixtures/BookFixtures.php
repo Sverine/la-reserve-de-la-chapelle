@@ -32,7 +32,7 @@ class BookFixtures extends Fixture implements DependentFixtureInterface
             $book = new Book();
             $book->setTitle(self::BOOKS[$i])
             ->setAuthor($faker->firstName.' '.$faker->lastName())
-            ->setDescription($faker->paragraphs(4, true))
+            ->setDescription($faker->paragraphs(5, true))
             ->setPublishedAt($faker->dateTimeThisCentury())
             ->setIsReserved(false)
             ->setIsFavorite($faker->boolean());

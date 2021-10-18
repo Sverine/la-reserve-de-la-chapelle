@@ -76,7 +76,7 @@
             <div class="book-items d-flex flex-column flex-md-row flex-md-wrap m-5">
                 {% if app.request.get('_route') ==  'catalog'%}
                     {% for book in books %}
-                        <a href="{{ path('catalog_show', {'id':book.id}) }}" class="book-item mx-5 {% for type in book.type %}{{ type.name | capitalize }} {% endfor %}">
+                        <a href="{{ path('catalog_show', {'id':book.id}) }}" class="book-item m-3 {% for type in book.type %}{{ type.name | capitalize }} {% endfor %}">
                             <div class="book-cover-show is-catalog rounded-4">
                                 <figure>
                                     <img src="{{ vich_uploader_asset(book,'folderImage') }}" alt="Photo de couverture du livre" class="rounded-4">
@@ -88,8 +88,8 @@
                                 </figure>
                                 {% endif %}
 
-                                <div class="book-cover-info">
-                                    <p class="text-white fw-bold text-end">{{ book.title |capitalize }}</p>
+                                <div class="book-cover-info ps-2">
+                                    <p class="text-white fw-bold text-end mb-1">{{ book.title }}</p>
                                     <p class="text-white fw-light text-end">{{ book.author | title }}</p>
                                 </div>
 

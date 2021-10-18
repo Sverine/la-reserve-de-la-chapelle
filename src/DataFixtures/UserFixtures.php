@@ -71,10 +71,10 @@ class UserFixtures extends Fixture
         $this->addReference('Charline', $userSubscriber);
 
         $userNonSubscriber = new User();
-        $userNonSubscriber->setEmail('yvan.frannet@mail.com')
-            ->setPassword($this->hasher->hashPassword($userNonSubscriber, 'yvanlareserve'))
-            ->setRoles(["ROLE_SUBSCRIBER"])
-            ->setFirstname('Yvan')
+        $userNonSubscriber->setEmail('yves.frannet@mail.com')
+            ->setPassword($this->hasher->hashPassword($userNonSubscriber, 'yveslareserve'))
+            ->setRoles(["ROLE_USER"])
+            ->setFirstname('Yves')
             ->setLastname('Frannet')
             ->setAddress('45 impasse du jeu de Boule
 34110 Curreau-sur-Seine')

@@ -12,8 +12,8 @@
                     <div>
                         <figure class="book-cover-show me-5 rounded-4">
                             <img src="{{ vich_uploader_asset(book,'folderImage') }}" alt="Photo de couverture du livre" class="rounded-4">
-                            <div class="book-cover-info">
-                                <p class="text-white fw-bold fs-3 text-end">{{ book.title |capitalize }}</p>
+                            <div class="book-cover-info ps-3">
+                                <p class="text-white fw-bold fs-3 text-end">{{ book.title  }}</p>
                                 <p class="text-white fw-light text-end">{{ book.author | title }}</p>
                             </div>
                             {% if book.isFavorite %}
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="d-flex flex-column align-items-start book-description-show">
-                        <h1>{{ book.title | capitalize}}</h1>
+                        <h1>{{ book.title }}</h1>
                         <h2 class="fw-normal fs-3">{{ book.author | title }}</h2>
                         <p>Genre :
                             {% for type in book.type %}
@@ -78,7 +78,7 @@
         </section>
 
         <section class="m-5 p-5">
-            <h2 class="text-center mb-5">Vous allez aimez ...</h2>
+            <h2 class="text-center mb-5">Dans le même genre ...</h2>
                 <div class="d-flex flex-column flex-md-row flex-md-wrap justify-content-around align-items-center">
                 {% for book in booksFromTypes %}
                         <a href="{{ path('catalog_show', {'id':book.id}) }}">
@@ -94,7 +94,7 @@
                                 {% endif %}
 
                                 <div class="book-cover-info">
-                                    <p class="text-white fw-bold text-end">{{ book.title |capitalize }}</p>
+                                    <p class="text-white fw-bold text-end">{{ book.title }}</p>
                                     <p class="text-white fw-light text-end">{{ book.author | title }}</p>
                                 </div>
 
