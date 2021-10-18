@@ -17,17 +17,16 @@ class DashboardController extends AbstractController
     public function index(EntityManagerInterface $entityManager): Response
     {
         //$users = $entityManager->getRepository(User::class)->findAll();
-        $users = $entityManager->getRepository(User::class)->findBy(['is_confirmed'=>false]);
+        $users = $entityManager->getRepository(User::class)->findBy(['is_confirmed' => false]);
         return $this->render('dashboard/index.html.twig',[
             'users'=>$users
             ]);
     }
 
     /**
-     * @Route("/dashboard/utilisateur/{id}/confirmer", name="user_approve",  methods={"POST"})
+     * @Route("/dashboard/adherent/{id}/confirmer", name="user_approve",  methods={"POST"})
      * @param User $user
      * @param EntityManagerInterface $entityManager
-     * @param UserRepository $userRepository
      * @return Response
      */
     public function approveUser(User $user, EntityManagerInterface $entityManager) : Response
