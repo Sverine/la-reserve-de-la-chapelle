@@ -4,9 +4,9 @@
 
 {% block body %}
 <div class="container-fluid dashboard">
-    <div class="row col">
+    <div class="row">
         {{ include ('_dashboard-navigation.html.twig') }}
-        <div class="col mt-3 ms-5">
+        <div class="col-9 col-sm-10 col-xxl-11 pt-3 ps-3 ps-lg-5">
             {{ include ('_navigation.html.twig') }}
 
             <section class="mt-5 pt-5">
@@ -14,8 +14,8 @@
                 <h1 class="mt-5">Modifier {{ book.title | capitalize }}</h1>
             </section>
 
-            <section class="row my5 me-5 pt-5">
-                <div class="col-8">
+            <section class="row my5 me-lg-5 pt-5">
+                <div class="col-lg-8">
                     {{ form_start(form) }}
                     <div class="row d-flex flex-column flex-sm-row justify-content-between">
                         <div class="col-12 col-md-5  me-sm-2">{{ form_row(form.title) }}</div>

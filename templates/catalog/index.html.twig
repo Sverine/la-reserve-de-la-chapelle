@@ -9,13 +9,13 @@
         {# HEADER #}
         <div class="header d-flex flex-column justify-content-center align-items-center is-catalog" style="background-image:url('{{ asset('build/images/catalog-bg.png') }}')">
             <h1 class="text-center text-light mt-5">Je recherche ...</h1>
-            <div class="input-group mt-3 w-50 d-flex">
-                <span class="input-group-text bg-white border-white">
+            <div class="input-group mt-3 row justify-content-sm-center">
+                <span class="search-icon input-group-text bg-white border-white col-2 ms-3 col-sm-1">
                     <figure class="mb-0">
                         <img src="{{ asset('build/images/icon-search.svg') }}" alt="Icon de recherche" height="24" width="24">
                     </figure>
                 </span>
-                {{ form_start(form, {'attr' : {'class': 'flex-grow-1'}}) }}
+                {{ form_start(form, {'attr' : {'class': 'col me-3 p-0 col-sm-7 col-xl-5'}}) }}
                 {{ form_widget(form, { 'attr': {'class': 'form-control py-2 search-catalog border-white', 'placeholder':'Hagrid et les sept nains'} }) }}
                 {{ form_end(form) }}
                 {#  <input type="text" class="form-control py-2 search-catalog border-white" placeholder="Hagrid et les sept nains ..." name="search-by-title" aria-label="searchByTitle">#}
@@ -41,7 +41,7 @@
         </section>
 
         {# IF SEARCH IS ACTIVE #}
-        <section id="search-section" class="mx-5 mb-5 flex-column align-items-center ">
+        <section id="search-section" class="mx-5 mb-5 flex-column align-items-center">
             <h2 id="resultsTitle" class="text-center mb-5"></h2>
             <div id="lottie-animation">
                 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -71,7 +71,7 @@
         </section>
 
         <section id="catalog-section" class="types-container">
-            <h2 class="text-center mb-5">Découvrez tous vos livres préférés dans notre catalogue </h2>
+            <h2 class="text-center mb-5 px-3">Découvrez tous vos livres préférés dans notre catalogue </h2>
 
             <div class="book-items d-flex flex-column flex-md-row flex-md-wrap m-5">
                 {% if app.request.get('_route') ==  'catalog'%}

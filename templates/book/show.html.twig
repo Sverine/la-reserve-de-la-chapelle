@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ book.title | capitalize }} | La Réserve de la Chapelle{% endblock %}
+{% block title %}{{ book.title  }} | La Réserve de la Chapelle{% endblock %}
 
 {% block body %}
 <div class="container-fluid dashboard">
-    <div class="row col">
+    <div class="row">
         {{ include ('_dashboard-navigation.html.twig') }}
-        <div class="col mt-3 ms-5">
+        <div class="col-9 col-sm-10 col-xxl-11 pt-3 ps-3 ps-lg-5">
             {{ include ('_navigation.html.twig') }}
 
             <section class="mt-5 pt-5">
-                <a class="text-uppercase fw-bold text-decoration-none ps-5" href="{{ path('book_index') }}"> &#60 Retourner aux livres</a>
+                <a class="text-uppercase fw-bold text-decoration-none ps-lg-5" href="{{ path('book_index') }}"> &#60 Retourner aux livres</a>
                 <h1 class="mt-5 ps-5">Livre #{{ book.id }}</h1>
             </section>
 
-            <section class="me-5 ps-5 d-flex">
-                <figure class="book-cover-show me-5 rounded-4">
-                    <img src="{{ vich_uploader_asset(book,'folderImage') }}" alt="Photo de couverture du livre" class="rounded-4">
+            <section class="me-lg-5 ps-lg-5 d-flex flex-column flex-xxl-row align-items-center">
+                <figure class="book-cover-show me-lg-5 rounded-4">
+                    <img src="{{ vich_uploader_asset(book,'folderImage') }}" alt="Photo de couverture du livre" class="rounded-4 is-book-dashboard">
                     <div class="book-cover-info">
                         <p class="text-white fw-bold fs-3 text-end">{{ book.title |capitalize }}</p>
                         <p class="text-white fw-light text-end">{{ book.author | title }}</p>
@@ -29,7 +29,7 @@
                     {% endif %}
 
                 </figure>
-                <div class="col-8 d-flex flex-column ms-3 book-description-show">
+                <div class="col-xxl-8 d-flex flex-column ms-3 book-description-show">
                     <h2>{{ book.title | capitalize }}</h2>
                     <p class="fst-italic">par {{ book.author | title }}</p>
                     <p>Genre : {% for type in book.type %}{{ type.name | capitalize }} {% endfor %}</p>
@@ -41,13 +41,13 @@
                 </div>
             </section>
 
-            <section class="d-flex justify-content-center">
+            <section class="d-flex flex-column flex-lg-row justify-content-center my-3">
                 {#  <a href="{{ path('book_index') }}">back to list</a>#}
-                <form method="post" action="{{ path('book_delete', {'id': book.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="me-3">
+                <form method="post" action="{{ path('book_delete', {'id': book.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="me-xl-3 mt-2">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
-                    <button class="btn btn-danger text-white px-4">Supprimer</button>
+                    <button class="btn btn-danger text-white px-4 w-100">Supprimer</button>
                 </form>
-                <button class="btn btn-secondary ms-3 px-5">
+                <button class="btn btn-secondary ms-xl-3 px-5 mt-2">
                     <a class="text-white text-decoration-none" href="{{ path('book_edit', {'id': book.id}) }}">Modifier</a>
                 </button>
             </section>
