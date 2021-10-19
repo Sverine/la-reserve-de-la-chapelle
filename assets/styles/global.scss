@@ -124,7 +124,6 @@ body.is-bg{
     min-height: 450px;
 
     .carousel-item > div {
-      max-height: 320px;
       max-width: 930px;
       box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
       background-color: white;
@@ -163,9 +162,6 @@ body.is-bg{
   max-width:800px;
 }
 
-.login-form{
-  max-height:415px;
-}
 
 form[name="book"] div{
   #book_type{
@@ -235,24 +231,24 @@ table {
 section{
   //BOOK LOAN EDIT CONTAINER
   &.is-loan{
-    max-height:550px;
+    //max-height:550px;
     margin-top:100px;
     >div >.book-cover-show{
-      width:450px;
-      height:630px;
-      top: -13%;
+      margin-top: -6%;
     }
   }
   //BOOK COVER
   .book-cover-show{
-    width:400px;
-    height:561px;
     position: relative;
     border-radius: 10px;
     background: linear-gradient(0deg, rgba(0,0,0,0.39959733893557425) 0%, rgba(0,0,0,0) 100%);
     &.is-catalog{
       width:200px;
       height:280px;
+    }
+    img.is-book-dashboard{
+      width: 200px;
+      height: 280px;
     }
       >.is-reserved{
         position: absolute;
@@ -300,15 +296,38 @@ section{
 }
 
 //MEDIA QUERIES
-@media screen and (max-width:576px){
-  .w-sm-50{
-    width:50%;
+@include media-breakpoint-up(sm) {
+  .carousel .carousel-inner .carousel-item > div{
+    max-height: 320px;
+  }
+  section .book-cover-show{
+    width:400px;
+    height:561px;
+    img.is-book-dashboard{
+      width: 400px;
+      height: 561px;
+    }
   }
 }
 
-@media screen and (min-width:540px){
-  .vertical-nav{
-    display:flex !important;
+@include media-breakpoint-up(md) {
+  .search-icon{
+    max-width: 50px;
+  }
+}
+
+@include media-breakpoint-up(xl){
+  .w-xl-50{
+    width:50% !important;
+  }
+  .login-form{
+    max-height:415px;
+    >div >figure{
+      margin-top:-50px !important;
+    }
+  }
+  section.is-loan {
+    max-height: 550px;
   }
 }
 

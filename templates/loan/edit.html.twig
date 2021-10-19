@@ -6,9 +6,9 @@
 
 {% block body %}
     <div class="container-fluid dashboard">
-        <div class="row col">
+        <div class="row">
             {{ include ('_dashboard-navigation.html.twig') }}
-            <div class="col mt-3 ms-5">
+            <div class="col-9 col-sm-10 col-xxl-11 pt-3 ps-3 ps-lg-5">
                 {{ include ('_navigation.html.twig') }}
 
                 {# TITLE OF DASHBOARD]#}
@@ -19,16 +19,16 @@
                         <p><span class="fw-normal">Emprunté par : </span>{{ loan.user}} {{ loan.user.lastname }}</p>
                     </section>
 
-                    <section class="row col-12 col-xxl-9 my5 me-5 shadow rounded-4 bg-white is-loan">
-                        <div class="d-flex flex-column flex-xl-row ps-5 pt-5">
-                            <figure class="book-cover-show me-5 rounded-4">
-                                <img src="{{ vich_uploader_asset(loan.book,'folderImage') }}" alt="Photo de couverture du livre" class="rounded-4">
+                    <section class="row col-12 col-xxl-9 my5 me-5 shadow rounded-4 bg-white is-loan mb-5 mb-xl-0">
+                        <div class="d-flex flex-column align-items-center flex-xl-row ps-xl-5 h-100">
+                            <figure class="book-cover-show me-xl-5 rounded-4">
+                                <img src="{{ vich_uploader_asset(loan.book,'folderImage') }}" alt="Photo de couverture du livre" class="rounded-4 is-book-dashboard">
                                 <div class="book-cover-info">
                                     <p class="text-white fw-bold fs-3 text-end">{{ loan.book |capitalize }}</p>
                                     <p class="text-white fw-light text-end">{{ loan.book.author | title }}</p>
                                 </div>
                             </figure>
-                            <div class="flex-grow-1 px-5">
+                            <div class="flex-grow-1 px-xl-5 w-100 mb-5 mb-xl-0">
                                 {{ form_start(form) }}
                                 {{ form_row(form.date_reserved) }}
                                 {{ form_row(form.status) }}
@@ -52,7 +52,7 @@
             let input = document.querySelector('.input-js');
             let status = document.querySelector('.input-js').value;
 
-            if(status == 'Emprunté'){
+            if(status === 'Emprunté'){
                 input.options[0].remove(0)
             }
         }

@@ -24,14 +24,14 @@
                 </div>
             {% endif %}
 
-            <div class="login-form d-flex flex-column justify-content-between flex-xl-row mx-5 mb-5 shadow-sm rounded-4 bg-white overflow-hidden">
-                <div class="w-50 me-5">
-                    <figure>
+            <div class="login-form row mx-5 mb-5 shadow-sm rounded-4 bg-white overflow-hidden">
+                <div class="p-0 col-lg-7">
+                    <figure class="w-100 m-lg-0">
                         <img src="{{ 'build/images/login-img.jpg' }}" alt="image de connexion">
                     </figure>
                 </div>
 
-                <div class="d-flex flex-column justify-content-center w-50 mx-5">
+                <div class="col-lg-5 d-flex flex-column justify-content-xl-start justify-content-center p-2 p-lg-4 mt-xl-3">
                     <label for="inputEmail">Email</label>
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-5" autocomplete="email" required autofocus>
                     <label for="inputPassword">Mot de passe</label>
