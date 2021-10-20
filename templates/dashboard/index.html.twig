@@ -15,7 +15,7 @@
                     <h1 class="mt-5">Bonjour {{ app.user.firstname | capitalize }}</h1>
                     <div class="d-flex justify-content-start">
                         <figure class="me-2"><img src="{{ asset('build/images/icon-info.svg') }}" alt="Icon d'information" width="24" height="24"></figure>
-                        <p>Il y a <span class="fw-bold">{{ users|length }}</span> compte{% if users|length>1 %}s{% endif %} à confirmer aujourd'hui</p>
+                        <p>Il y a <span id="count-js" class="fw-bold">{{ users|length }}</span> compte{% if users|length>1 %}s{% endif %} à confirmer aujourd'hui</p>
                     </div>
                 </section>
 
@@ -86,12 +86,15 @@
     <script>
 
         window.onload = ()=> {
+
             function onChangeCheckApprove(){
                 const url = this.getAttribute('data-url');
 
                 axios.post(url).then ( (response) =>{
                     let tr =  document.getElementById('tr-user-'+response.data.userId);
                     let toast = document.getElementById('toast-user-'+response.data.userId);
+                    let count = document.getElementById('count-js').textContent;
+                    document.getElementById('count-js').textContent = parseInt(count) - 1;
 
                     //REMOVE THE USER FROM LIST
                     tr.classList.add('fadeOutRight');
@@ -109,6 +112,8 @@
                     setTimeout(function(){
                         toast.classList.remove('show','slideInUp', 'fadeOut');
                     }, 4200);
+                }).catch(function(error){
+                    console.log(error);
                 })
             }
 
