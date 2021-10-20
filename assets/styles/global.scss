@@ -300,6 +300,12 @@ section{
   color:$info;
 }
 
+.min-vh-100-404{
+  $height: calc(100% - 300px);
+  min-width: $height;
+}
+
+
 //MEDIA QUERIES
 @include media-breakpoint-up(sm) {
   .carousel .carousel-inner .carousel-item > div{

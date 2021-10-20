@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}404 : Page non trouvée{% endblock %}
+
+{% block body %}
+    <div class="container-xxl box-shadow is-bg">
+        {{ include ('_navigation.html.twig') }}
+
+        <section class="d-flex flex-column align-items-center justify-content-center my-5 w-100 min-vh-100-404">
+            <h1>Oops !</h1>
+            <p>Page non trouvée</p>
+            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+            <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_rddo60fz.json"  background="transparent"  speed="1"  style="width: 400px; height: 400px;"  loop  autoplay></lottie-player>
+
+            <button class="btn btn-secondary mb-5">
+                <a class="text-white text-decoration-none"href="{{ path('home') }}">Ramenez-moi en lieu sûr !</a>
+            </button>
+        </section>
+
+    {{ include ('_footer.html.twig') }}
+    </div>
+{% endblock %}
