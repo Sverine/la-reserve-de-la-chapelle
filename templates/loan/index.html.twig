@@ -40,10 +40,10 @@
                             <tbody>
                             {% for loan in loans %}
                                 <tr class="{% if loan.isLate %}is-late{% endif %}">
-                                    <td class="border-0">{{ loan.book | capitalize }}</td>
+                                    <td class="border-0">{{ loan.book  }}</td>
                                     <td class="border-0">{{ loan.user | capitalize}} {{ loan.user.lastname | capitalize }}</td>
-                                    <td class="border-0">{{ loan.dateReserved|date('d/m/Y - H:m') }}</td>
-                                    <td class="border-0">{{ loan.dateLoan ? loan.dateLoan|date('d/m/Y - H:m') : '--' }}</td>
+                                    <td class="border-0">{{ loan.dateReserved|date('d/m/Y - H:i') }}</td>
+                                    <td class="border-0">{{ loan.dateLoan ? loan.dateLoan|date('d/m/Y - H:i') : '--' }}</td>
                                     <td class="border-0 {% if loan.status == 'Réservé' %}text-warning{% endif %}">{{ loan.status }}</td>
                                     <td class="border-0 d-flex">
 

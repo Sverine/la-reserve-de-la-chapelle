@@ -7,7 +7,7 @@
             {{ include ('_navigation.html.twig') }}
 
         <div class="header d-flex flex-column justify-content-center align-items-center" style="background-image:url('{{ asset('build/images/header-bg.png') }}')">
-            <h1 class="text-center text-light">Réservez vos romans<br> en un clic</h1>
+            <h1 class="text-center text-light">Réservez vos <span id="typed"></span><br> en un clic</h1>
             <button type="button" class="btn btn-info px-5 mt-5">
                 <a class="text-white text-decoration-none text-uppercase fw-normal" href="{{ path('register') }}">Je m'inscris</a>
             </button>
@@ -85,4 +85,17 @@
 
         {{ include ('_footer.html.twig') }}
     </div>
+{% endblock %}
+
+{% block javascrips_end_body %}
+    {#  USING TYPED JS TO ANIMATE HEADER #}
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        let typed = new Typed('#typed', {
+            strings: ["polars", "BD", "livres jeunesse","romans"],
+            typeSpeed: 100,
+            backSpeed: 60
+        });
+    </script>
+
 {% endblock %}

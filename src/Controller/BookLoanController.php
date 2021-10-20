@@ -86,6 +86,11 @@ class BookLoanController extends AbstractController
                     break;
                 case 'Rendu':
                     $bookLoan->setDateReturn(new \DateTime('now'));
+
+                    $bookToUpdate = $bookLoan->getBook();
+                    $bookToUpdate->setIsReserved(false);
+                    $entityManager->persist($bookToUpdate);
+
                     $entityManager->flush();
                     break;
             }

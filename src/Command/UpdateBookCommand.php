@@ -42,13 +42,12 @@ class UpdateBookCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $this->bookRepository->findBy(['is_reserved'=>true]);
         $loansReserved = $this->bookLoanRepository->findByDateReserved();
 
         $loansLateReserved= [];
         foreach($loansReserved as $loan){
             $diff = $loan->getDateReserved()->diff(new \DateTime('now'));
-            if($diff->days >= 3){
+            if($diff->days >= 3 && !$loan->getDateLoan()){
                 $loansLateReserved[]= $loan;
             }
         }
@@ -66,7 +65,7 @@ class UpdateBookCommand extends Command
 
                 $this->entityManager->flush();
 
-                $output->writeln(['Livre :'.$loan->getBook().'has been updated']);
+                $output->writeln(['Livre :'.$loan->getBook().' has been updated']);
             }
         }else{
             $output->writeln(['No book updated']);

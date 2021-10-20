@@ -18,7 +18,7 @@ img{
   font-weight: 300;
 }
 
-label,legend, h1, h2 {
+label,legend, h1, h2, #typed {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   &.type-name {
@@ -293,6 +293,11 @@ section{
       }
     }
   }
+}
+
+//TYPED CURSOR
+.typed-cursor{
+  color:$info;
 }
 
 //MEDIA QUERIES
