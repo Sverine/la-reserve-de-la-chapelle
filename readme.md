@@ -56,7 +56,7 @@ Afin d'installer correctement le projet, il convient d'avoir un environnement de
 - Exécutez les migrations afin de récupérer la base de données
   > ``symfony console doctrine:migrations:migrate``
 
-- Lancez les fixtures afin d'alimenter votre base de donnée local de quelques données
+- Lancez les fixtures afin d'alimenter votre base de donnée locale de quelques données
   > ``symfony console doctrine:fixtures:load``
 
 - Compilez le SCSS et Javascript
