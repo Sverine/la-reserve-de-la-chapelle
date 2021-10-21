@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Book;
 use App\Entity\Type;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -24,11 +25,22 @@ class BookRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('b')
             ->where('b.title LIKE :booktitle')
-            ->setParameter('booktitle', $booktitle)
+            ->setParameter('booktitle', $booktitle.'%')
             ->getQuery()
             ->getResult()
         ;
     }
+
+    /**
+     * @return Query
+     */
+
+    public function findAllByPaginationQuery(): Query
+    {
+        return $this->createQueryBuilder('b')
+            ->getQuery();
+    }
+
      /**
     //  * @return Book[] Returns an array of Book objects
     //  */

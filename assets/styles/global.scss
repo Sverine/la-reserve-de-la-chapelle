@@ -300,11 +300,27 @@ section{
   color:$info;
 }
 
+//MIN-HEIGHT
 .min-vh-100-404{
   $height: calc(100% - 300px);
-  min-width: $height;
+  min-height: $height;
 }
 
+//NAVIGATION
+.navigation .page-item{
+  .page-link{
+    border:none;
+    background-color: transparent;
+  }
+  &.active .page-link{
+    background-color: $primary;
+    color:white;
+    border-radius: 100px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+  }
+}
 
 //MEDIA QUERIES
 @include media-breakpoint-up(sm) {
